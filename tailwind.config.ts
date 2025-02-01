@@ -4,6 +4,16 @@ import animate from 'tailwindcss-animate';
 export default {
   darkMode: ['class'],
   content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
+  safelist: [
+    {
+      pattern: /(border-.*-border|shadow-.*-normal)$/,
+      variants: ['primary', 'secondary', 'accent', 'destructive'],
+    },
+    'hover:shadow-primary-hover',
+    'hover:shadow-secondary-hover',
+    'hover:shadow-accent-hover',
+    'hover:shadow-destructive-hover',
+  ],
   theme: {
     fontSize: {
       xs: ['1.2rem', { lineHeight: '1.6rem' }],
@@ -19,6 +29,30 @@ export default {
       '7xl': ['7.2rem', { lineHeight: '1' }],
       '8xl': ['9.6rem', { lineHeight: '1' }],
       '9xl': ['12.8rem', { lineHeight: '1' }],
+    },
+    spacing: {
+      0: '0',
+      1: '0.1rem',
+      2: '0.2rem',
+      4: '0.4rem',
+      8: '0.8rem',
+      12: '1.2rem',
+      16: '1.6rem',
+      20: '2rem',
+      24: '2.4rem',
+      28: '2.8rem',
+      32: '3.2rem',
+      36: '3.6rem',
+      40: '4rem',
+      44: '4.4rem',
+      48: '4.8rem',
+      52: '5.2rem',
+      56: '5.6rem',
+      60: '6rem',
+      64: '6.4rem',
+      72: '7.2rem',
+      80: '8rem',
+      96: '9.6rem',
     },
     extend: {
       screens: {
@@ -40,10 +74,12 @@ export default {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          border: 'hsl(var(--primary-border))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
+          border: 'hsl(var(--secondary-border))',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
@@ -52,13 +88,13 @@ export default {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
+          border: 'hsl(var(--accent-border))',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
+          border: 'hsl(var(--destructive-border))',
         },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         chart: {
           '1': 'hsl(var(--chart-1))',
@@ -69,14 +105,25 @@ export default {
         },
       },
       borderRadius: {
-        sm: 'calc(var(--radius) - 4px)',
+        none: '0',
+        sm: '0.2rem',
         DEFAULT: '0.4rem',
-        md: 'calc(var(--radius) - 2px)',
-        lg: 'var(--radius)',
+        md: '0.6rem',
+        lg: '0.8rem',
         xl: '1.2rem',
         '2xl': '1.6rem',
         '3xl': '2.4rem',
         full: '100%',
+      },
+      boxShadow: {
+        'primary-normal': 'hsl(var(--primary-border)) 0px 4px 0px',
+        'primary-hover': 'hsl(var(--primary-border)) 0px 8px 0px',
+        'secondary-normal': 'hsl(var(--secondary-border)) 0px 4px 0px',
+        'secondary-hover': 'hsl(var(--secondary-border)) 0px 8px 0px',
+        'destructive-normal': 'hsl(var(--destructive-border)) 0px 4px' + ' 0px',
+        'destructive-hover': 'hsl(var(--destructive-border)) 0px 8px' + ' 0px',
+        'accent-normal': 'hsl(var(--accent-border))' + ' 0px 4px' + ' 0px',
+        'accent-hover': 'hsl(var(--accent-border))' + ' 0px 8px' + ' 0px',
       },
     },
   },
