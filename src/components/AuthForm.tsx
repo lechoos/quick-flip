@@ -8,6 +8,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Eye, EyeOff } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 import type { FormField } from '@/types/FormField';
 
@@ -42,40 +43,48 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitAction)}>
+    <form
+      className="flex flex-col gap-3"
+      onSubmit={handleSubmit(onSubmitAction)}
+    >
       {fields.map((field) => (
         <div key={field.name as string}>
-          <Label htmlFor={field.name as string}>{field.label}</Label>
-          <div>
+          <Label
+            className="text-sm"
+            htmlFor={field.name as string}
+          >
+            {field.label}
+          </Label>
+          <div className="flex">
             <Input
               {...register(field.name as Path<z.infer<T>>)}
               type={field.type === 'password' && showPasswords[field.name as string] ? 'text' : field.type}
               id={field.name as string}
               placeholder={field?.placeholder}
-              className={errors[field.name] ? 'border-red-500' : ''}
+              className={cn('p-1 w-full text-base' + ' bg-primary' + ' text-primary-foreground border-primary-border shadow-primary-border' + ' placeholder:text-primary-foreground/50')}
             />
             {field.type === 'password' && (
               <Button
                 type="button"
-                size="sm"
+                size="icon"
+                className="ml-1 !h-[46px]"
                 onClick={() => togglePassword(field.name as string)}
               >
-                {showPasswords[field.name as string] ? <EyeOff className="h-1 w-1" /> : <Eye className="h-1 w-1" />}
+                {showPasswords[field.name as string] ? <EyeOff /> : <Eye />}
               </Button>
             )}
           </div>
 
-          {errors[field.name] && <p className="text-sm text-red-500">{errors[field.name]?.message as string}</p>}
-
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isLoading}
-          >
-            {isLoading ? 'Loading...' : submitText}
-          </Button>
+          {errors[field.name] && <p className="mt-2 text-sm text-red-700">{errors[field.name]?.message as string}</p>}
         </div>
       ))}
+      <Button
+        type="submit"
+        className="w-full"
+        disabled={isLoading}
+      >
+        {isLoading ? 'Loading...' : submitText}
+      </Button>
     </form>
   );
 };
