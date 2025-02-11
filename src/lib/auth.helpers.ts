@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { hash, compare } from 'bcrypt';
+import { hash, compare } from 'bcryptjs';
 import { prisma } from '@/../prisma';
 import { registerSchema } from '@/lib/formSchemas';
 
