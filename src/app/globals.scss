@@ -35,8 +35,16 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  h1 {
+    @apply font-anonymous-pro font-bold text-4xl;
+  }
 }
 
 html {
   font-size: 62.5%;
+}
+
+.lucide-eye, .lucide-eye-off {
+  @apply h-[2.5rem] aspect-square !important
 }

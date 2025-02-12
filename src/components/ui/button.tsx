@@ -17,10 +17,10 @@ const buttonVariants = cva('inline-flex items-center' + ' justify-center gap-2 w
       muted: 'bg-muted text-muted-foreground' + ' !cursor-not-allowed',
     },
     size: {
-      default: 'h-9 px-16 py-8',
-      sm: 'h-8 rounded-md px-3 text-xs',
-      lg: 'h-10 rounded-md px-8',
-      icon: 'h-9 w-9',
+      default: 'h-6',
+      sm: 'h-5 rounded-md px-1 text-xs',
+      lg: 'h-8 rounded-md px-3',
+      icon: 'h-4 aspect-square',
     },
   },
   defaultVariants: {
