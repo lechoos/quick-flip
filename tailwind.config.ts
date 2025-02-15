@@ -13,6 +13,10 @@ export default {
     'hover:shadow-secondary-hover',
     'hover:shadow-accent-hover',
     'hover:shadow-destructive-hover',
+    'focus:shadow-primary-hover',
+    'focus:shadow-secondary-hover',
+    'focus:shadow-accent-hover',
+    'focus:shadow-destructive-hover',
   ],
   theme: {
     fontSize: {

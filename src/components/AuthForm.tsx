@@ -61,7 +61,7 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
               type={field.type === 'password' && showPasswords[field.name as string] ? 'text' : field.type}
               id={field.name as string}
               placeholder={field?.placeholder}
-              className={cn('p-1 w-full text-base' + ' bg-primary' + ' text-primary-foreground border-primary-border shadow-primary-border' + ' placeholder:text-primary-foreground/50')}
+              className={cn('p-1 w-full text-base' + ' bg-primary' + ' text-primary-foreground border-primary-border shadow-primary-border' + ' placeholder:text-primary-foreground/50 focus:outline-none focus:border-[3px]')}
             />
             {field.type === 'password' && (
               <Button
