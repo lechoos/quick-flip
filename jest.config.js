@@ -5,7 +5,7 @@ const createJestConfig = nextJest({
 });
 
 const customJestConfig = {
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js', '<rootDir>/src/__mocks__/prisma.ts'],
   testEnvironment: 'jest-environment-jsdom',
   testEnvironmentOptions: {
     customExportConditions: [''],

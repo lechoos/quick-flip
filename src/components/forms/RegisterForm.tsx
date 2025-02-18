@@ -1,10 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import axios, { AxiosError } from 'axios';
+import { useState } from 'react';
 import type { FormField } from '@/types/FormField';
 import { AuthForm } from '@/components/AuthForm';
 import { registerSchema, RegisterSchemaType } from '@/lib/formSchemas';
-import { checkUserExist, createUser } from '@/lib/auth.helpers';
 
 const registerFields: FormField<RegisterSchemaType>[] = [
   {
@@ -28,18 +28,24 @@ const registerFields: FormField<RegisterSchemaType>[] = [
 ];
 
 export const RegisterForm = () => {
-  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitAction = async (data: { username: string; email: string; password: string }) => {
-    const userExists = await checkUserExist(data.email);
+    try {
+      setIsLoading(true);
+      setError(null);
 
-    if (userExists) {
-      alert('User already exists');
-      return;
+      await axios.post('/api/auth/register', data);
+    } catch (ex) {
+      if (ex instanceof AxiosError) {
+        setError(ex.response?.data?.error || 'Registration failed');
+      } else {
+        setError('An unknown error occurred. Please try again later.');
+      }
+    } finally {
+      setIsLoading(false);
     }
-
-    await createUser(data);
-    router.push('/');
   };
 
   return (
@@ -48,6 +54,8 @@ export const RegisterForm = () => {
       onSubmitAction={submitAction}
       submitText="Register"
       validationSchema={registerSchema}
+      isLoading={isLoading}
+      serverError={error as string}
     />
   );
 };
