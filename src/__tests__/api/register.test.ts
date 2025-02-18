@@ -9,7 +9,6 @@ import { POST } from '@/app/api/auth/register/route';
 import { prismaMock } from '@/__mocks__/prisma';
 import { hash } from 'bcryptjs';
 import { NextRequest } from 'next/server';
-import { User } from '@prisma/client';
 
 const createRequest = (body: unknown): NextRequest => {
   return new NextRequest('http://localhost:3000/api/auth/register', {
