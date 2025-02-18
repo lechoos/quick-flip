@@ -1,13 +1,10 @@
 'use client';
 
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
-import { signInUser } from '@/lib/actions';
 import type { FormField } from '@/types/FormField';
 import { AuthForm } from '@/components/AuthForm';
 import { registerSchema, RegisterSchemaType } from '@/lib/formSchemas';
-import { api } from '@/lib/axios';
-// import { Alert } from '@/components/Alert';
 
 const registerFields: FormField<RegisterSchemaType>[] = [
   {
@@ -39,20 +36,7 @@ export const RegisterForm = () => {
       setIsLoading(true);
       setError(null);
 
-      await api.post('/auth/register', data);
-
-      // console.log('Before login - checking session:');
-      // const sessionBefore = await getSession();
-      // console.log('Session before:', sessionBefore);
-
-      await signInUser({
-        email: data.email,
-        password: data.password,
-      });
-
-      // console.log('After login - checking session:');
-      // const sessionAfter = await getSession();
-      // console.log('Session after:', sessionAfter);
+      await axios.post('/api/auth/register', data);
     } catch (ex) {
       if (ex instanceof AxiosError) {
         setError(ex.response?.data?.error || 'Registration failed');
