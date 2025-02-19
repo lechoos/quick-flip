@@ -1,6 +1,6 @@
 'use client';
 
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { useState } from 'react';
 import type { FormField } from '@/types/FormField';
 import { AuthForm } from '@/components/AuthForm';
@@ -37,12 +37,9 @@ export const RegisterForm = () => {
       setError(null);
 
       await axios.post('/api/auth/register', data);
-    } catch (ex) {
-      if (ex instanceof AxiosError) {
-        setError(ex.response?.data?.error || 'Registration failed');
-      } else {
-        setError('An unknown error occurred. Please try again later.');
-      }
+    } catch (ex: any) {
+      const errorMessage = ex?.response?.data?.error || 'Registration failed';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }

@@ -11,6 +11,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import type { FormField } from '@/types/FormField';
+import { Alert } from '@/components/Alert';
 
 type AuthFormProps<T extends z.ZodType> = {
   fields: FormField<T>[];
@@ -21,7 +22,7 @@ type AuthFormProps<T extends z.ZodType> = {
   serverError?: string;
 };
 
-export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubmitAction, submitText, isLoading = false }: AuthFormProps<T>) => {
+export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubmitAction, submitText, isLoading = false, serverError }: AuthFormProps<T>) => {
   const [showPasswords, setShowPasswords] = useState<Record<string, boolean>>({});
 
   const form = useForm<z.infer<T>>({
@@ -47,6 +48,13 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
       className="flex flex-col gap-3"
       onSubmit={handleSubmit(onSubmitAction)}
     >
+      {serverError && (
+        <Alert
+          message={serverError}
+          variant="error"
+          duration={10000}
+        />
+      )}
       {fields.map((field) => (
         <div key={field.name as string}>
           <Label
@@ -65,6 +73,7 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
             />
             {field.type === 'password' && (
               <Button
+                data-testid="toggle-password"
                 type="button"
                 size="icon"
                 className="ml-1 !h-[46px]"

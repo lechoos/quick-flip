@@ -144,6 +144,19 @@ export default {
         'accent-hover': 'hsl(var(--accent-border)) 0px 8px 0px',
         'accent-border': 'hsl(var(--accent-border)) 2px 2px 0px',
       },
+      keyframes: {
+        slideIn: {
+          from: {
+            transform: 'translateY(-250px)',
+          },
+          to: {
+            transform: 'translateY(0)',
+          },
+        },
+      },
+      animation: {
+        slideIn: 'slideIn 0.5s forwards',
+      },
     },
   },
   plugins: [animate],
