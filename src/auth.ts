@@ -3,6 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import prisma from '@/lib/prisma';
 import { Adapter } from 'next-auth/adapters';
+import { compare } from 'bcryptjs';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma) as Adapter,
@@ -43,7 +44,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
       },
       async authorize(credentials) {
-        return null;
+        const user = await prisma.user.findUnique({ where: { email: credentials.email as string } });
+
+        if (!user) {
+          return null;
+        }
+
+        const passwordIsValid = await compare(credentials.password as string, user.password);
+
+        if (!passwordIsValid) {
+          return null;
+        }
+
+        return user;
       },
     }),
   ],
