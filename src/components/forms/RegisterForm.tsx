@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 import type { FormField } from '@/types/FormField';
 import { AuthForm } from '@/components/AuthForm';
 import { registerSchema, RegisterSchemaType } from '@/lib/formSchemas';
@@ -36,7 +37,20 @@ export const RegisterForm = () => {
       setIsLoading(true);
       setError(null);
 
-      await axios.post('/api/auth/register', data);
+      const response = await axios.post('/api/auth/register', data);
+
+      if (response.data.user) {
+        const result = await signIn('credentials', {
+          email: data.email,
+          password: data.password,
+          redirect: true,
+          redirectTo: '/',
+        });
+
+        if (result?.error) {
+          setError('Registration successful but login failed. Try to login with your credentials on the login page.');
+        }
+      }
     } catch (ex: any) {
       const errorMessage = ex?.response?.data?.error || 'Registration failed';
       setError(errorMessage);

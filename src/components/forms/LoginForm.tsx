@@ -24,10 +24,14 @@ const loginFields: FormField<LoginSchemaType>[] = [
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const submitAction = async (data: { email: string; password: string }) => {
     try {
+      setLoading(true);
+      setError(null);
+
       const response = await signIn('credentials', {
         ...data,
         redirect: false,
@@ -51,6 +55,8 @@ export const LoginForm = () => {
     } catch (ex: any) {
       const errorMessage = ex?.response?.data?.error || 'Login failed';
       setError(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,6 +67,7 @@ export const LoginForm = () => {
       submitText="Login"
       validationSchema={loginSchema}
       serverError={error!}
+      isLoading={loading}
     />
   );
 };

@@ -37,7 +37,7 @@ export const Alert = ({ message, onClose, variant = 'error', duration, className
 
   return (
     <div
-      className={`absolute top-[5%] flex items-center justify-between px-6 py-4 rounded border-2 animate-slideIn z-20 ${variantStyles[variant]} ${className}`}
+      className={`absolute top-[5%] flex items-center justify-center px-6 py-4 w-full max-w-[400px] rounded border-2 animate-slideIn z-20 ${variantStyles[variant]} ${className}`}
       role="alert"
     >
       <p className="text-2xl">{message}</p>
