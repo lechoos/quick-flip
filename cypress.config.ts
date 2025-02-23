@@ -22,7 +22,7 @@ export default defineConfig({
     chromeWebSecurity: false,
     env: {
       TEST_USER_EMAIL: 'test@example.com',
-      TEST_USER_PASSWORD: 'testPassword123',
+      TEST_USER_PASSWORD: 'Password123!',
     },
     setupNodeEvents(on, config) {
       on('task', {
@@ -38,8 +38,8 @@ export default defineConfig({
         },
         async seedTestUser() {
           try {
-            const bcrypt = require('bcrypt');
-            const hashedPassword = await bcrypt.hash('testPassword123', 12);
+            const bcrypt = require('bcryptjs');
+            const hashedPassword = await bcrypt.hash(config.env.TEST_USER_PASSWORD, 12);
 
             return prisma.user.create({
               data: {
