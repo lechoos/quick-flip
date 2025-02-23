@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import type { FormField } from '@/types/FormField';
@@ -22,11 +23,41 @@ const loginFields: FormField<LoginSchemaType>[] = [
 ];
 
 export const LoginForm = () => {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const submitAction = async (data: { email: string; password: string }) => {
-    await signIn('credentials', data);
-    router.push('/');
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await signIn('credentials', {
+        ...data,
+        redirect: false,
+      });
+
+      if (response?.error) {
+        switch (response.error) {
+          case 'CredentialsSignin':
+            setError('Invalid credentials');
+            break;
+          case 'AccessDenied':
+            setError('Access denied');
+            break;
+          default:
+            setError('An unknown error occurred. Try again later');
+        }
+      } else if (response?.ok) {
+        router.push('/');
+        router.refresh();
+      }
+    } catch (ex: any) {
+      const errorMessage = ex?.response?.data?.error || 'Login failed';
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -35,6 +66,8 @@ export const LoginForm = () => {
       onSubmitAction={submitAction}
       submitText="Login"
       validationSchema={loginSchema}
+      serverError={error!}
+      isLoading={loading}
     />
   );
 };

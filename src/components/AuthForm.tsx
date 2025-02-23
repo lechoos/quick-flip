@@ -11,6 +11,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import type { FormField } from '@/types/FormField';
+import { Alert } from '@/components/Alert';
 
 type AuthFormProps<T extends z.ZodType> = {
   fields: FormField<T>[];
@@ -21,7 +22,7 @@ type AuthFormProps<T extends z.ZodType> = {
   serverError?: string;
 };
 
-export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubmitAction, submitText, isLoading = false }: AuthFormProps<T>) => {
+export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubmitAction, submitText, isLoading = false, serverError }: AuthFormProps<T>) => {
   const [showPasswords, setShowPasswords] = useState<Record<string, boolean>>({});
 
   const form = useForm<z.infer<T>>({
@@ -47,6 +48,13 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
       className="flex flex-col gap-3"
       onSubmit={handleSubmit(onSubmitAction)}
     >
+      {serverError && (
+        <Alert
+          message={serverError}
+          variant="error"
+          duration={10000}
+        />
+      )}
       {fields.map((field) => (
         <div key={field.name as string}>
           <Label
@@ -60,11 +68,13 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
               {...register(field.name as Path<z.infer<T>>)}
               type={field.type === 'password' && showPasswords[field.name as string] ? 'text' : field.type}
               id={field.name as string}
+              aria-invalid={errors[field.name] ? 'true' : 'false'}
               placeholder={field?.placeholder}
               className={cn('p-1 w-full text-base' + ' bg-primary' + ' text-primary-foreground border-primary-border shadow-primary-border' + ' placeholder:text-primary-foreground/50 focus:outline-none focus:border-[3px]')}
             />
             {field.type === 'password' && (
               <Button
+                data-testid="toggle-password"
                 type="button"
                 size="icon"
                 className="ml-1 !h-[46px]"

@@ -83,4 +83,15 @@ describe('Alert', () => {
 
     expect(screen.getByRole('alert')).toBeInTheDocument();
   });
+
+  it('has provided className', () => {
+    render(
+      <Alert
+        message="Test"
+        className="test-class"
+      />,
+    );
+
+    expect(screen.getByRole('alert')).toHaveClass('test-class');
+  });
 });
