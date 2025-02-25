@@ -58,7 +58,7 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
       {fields.map((field) => (
         <div key={field.name as string}>
           <Label
-            className="text-sm"
+            className="text-xs sm:text-sm"
             htmlFor={field.name as string}
           >
             {field.label}
@@ -70,14 +70,14 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
               id={field.name as string}
               aria-invalid={errors[field.name] ? 'true' : 'false'}
               placeholder={field?.placeholder}
-              className={cn('p-1 w-full text-base' + ' bg-primary' + ' text-primary-foreground border-primary-border shadow-primary-border' + ' placeholder:text-primary-foreground/50 focus:outline-none focus:border-[3px]')}
+              className={cn('p-1 w-full text-sm' + ' sm:text-base' + ' bg-primary' + ' text-primary-foreground border-primary-border shadow-primary-border' + ' placeholder:text-primary-foreground/60 focus:outline-none focus:border-[3px]')}
             />
             {field.type === 'password' && (
               <Button
                 data-testid="toggle-password"
                 type="button"
                 size="icon"
-                className="ml-1 !h-[46px]"
+                className="ml-[1.3rem] sm:ml-1 !h-[46px]"
                 onClick={() => togglePassword(field.name as string)}
               >
                 {showPasswords[field.name as string] ? <EyeOff /> : <Eye />}
@@ -85,7 +85,7 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
             )}
           </div>
 
-          {errors[field.name] && <p className="mt-2 text-sm text-red-700">{errors[field.name]?.message as string}</p>}
+          {errors[field.name] && <p className="mt-2 text-xs sm:text-sm text-red-700">{errors[field.name]?.message as string}</p>}
         </div>
       ))}
       <Button

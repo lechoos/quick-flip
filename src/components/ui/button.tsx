@@ -4,9 +4,9 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-const addShadow = (color: string) => `border-2 border-${color}-border shadow-${color}-normal hover:-translate-y-[4px] hover:shadow-${color}-hover focus:-translate-y-[4px] focus:shadow-${color}-hover active:shadow-none active:translate-y-[4px]`;
+const addShadow = (color: string) => `border-2 border-${color}-border shadow-${color}-normal hover:-translate-y-[4px] hover:shadow-${color}-hover focus-visible:-translate-y-[4px] focus-visible:shadow-${color}-hover active:shadow-none active:translate-y-[4px]`;
 
-const buttonVariants = cva('inline-flex items-center' + ' justify-center gap-2 whitespace-nowrap rounded-md text-base font-medium rounded-lg focus:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0', {
+const buttonVariants = cva('inline-flex items-center' + ' justify-center px-1 gap-2 whitespace-nowrap rounded-md text-base font-medium rounded-lg focus:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0', {
   variants: {
     variant: {
       default: `bg-primary text-primary-foreground ${addShadow('primary')}`,
@@ -14,12 +14,11 @@ const buttonVariants = cva('inline-flex items-center' + ' justify-center gap-2 w
       destructive: `bg-destructive text-destructive-foreground ${addShadow('destructive')}`,
       accent: `bg-accent text-accent-foreground ${addShadow('accent')}`,
       link: 'text-primary underline-offset-4 hover:underline',
-      muted: 'bg-muted text-muted-foreground' + ' !cursor-not-allowed',
     },
     size: {
       default: 'h-6',
       sm: 'h-5 rounded-md px-1 text-xs',
-      lg: 'h-8 rounded-md px-3',
+      lg: 'h-8 text-xl rounded-md px-2',
       icon: 'h-4 aspect-square',
     },
   },

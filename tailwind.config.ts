@@ -17,6 +17,10 @@ export default {
     'focus:shadow-secondary-hover',
     'focus:shadow-accent-hover',
     'focus:shadow-destructive-hover',
+    'focus-visible:shadow-primary-hover',
+    'focus-visible:shadow-secondary-hover',
+    'focus-visible:shadow-accent-hover',
+    'focus-visible:shadow-destructive-hover',
   ],
   theme: {
     fontSize: {
@@ -96,10 +100,6 @@ export default {
           foreground: 'hsl(var(--secondary-foreground))',
           border: 'hsl(var(--secondary-border))',
         },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
@@ -133,16 +133,16 @@ export default {
       boxShadow: {
         'primary-normal': 'hsl(var(--primary-border)) 0px 4px 0px',
         'primary-hover': 'hsl(var(--primary-border)) 0px 8px 0px',
-        'primary-border': 'hsl(var(--primary-border)) 2px 2px 0px',
-        'secondary-normal': 'hsl(var(--secondary-border)) 0px 2px 0px',
+        'primary-border': 'hsl(var(--primary-border))' + ' 6px 6px 0px',
+        'secondary-normal': 'hsl(var(--secondary-border)) 0px 4px 0px',
         'secondary-hover': 'hsl(var(--secondary-border)) 0px 8px 0px',
         'secondary-border': 'hsl(var(--secondary-border)) 6px 6px 0px',
         'destructive-normal': 'hsl(var(--destructive-border)) 0px 4px 0px',
         'destructive-hover': 'hsl(var(--destructive-border)) 0px 8px 0px',
-        'destructive-border': 'hsl(var(--destructive-border)) 2px 2px 0px',
+        'destructive-border': 'hsl(var(--destructive-border)) 6px 6px 0px',
         'accent-normal': 'hsl(var(--accent-border)) 0px 4px 0px',
         'accent-hover': 'hsl(var(--accent-border)) 0px 8px 0px',
-        'accent-border': 'hsl(var(--accent-border)) 2px 2px 0px',
+        'accent-border': 'hsl(var(--accent-border)) 6px 6px 0px',
       },
       keyframes: {
         slideIn: {
