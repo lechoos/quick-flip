@@ -131,6 +131,7 @@ export default {
         full: '100%',
       },
       boxShadow: {
+        flashcard: '#000 6px 6px 0',
         'primary-normal': 'hsl(var(--primary-border)) 0px 4px 0px',
         'primary-hover': 'hsl(var(--primary-border)) 0px 8px 0px',
         'primary-border': 'hsl(var(--primary-border))' + ' 6px 6px 0px',
