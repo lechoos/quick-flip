@@ -61,3 +61,22 @@ model VerificationToken {
   @@id([identifier, token])
   @@map("verification_tokens")
 }
+
+model FlashcardCategory {
+  id        String      @id @default(cuid())
+  name      String
+  slug      String
+  Flashcard Flashcard[]
+
+  @@map("categories")
+}
+
+model Flashcard {
+  id         String            @id @default(cuid())
+  front      String
+  back       String
+  categoryId String
+  category   FlashcardCategory @relation(fields: [categoryId], references: [id])
+
+  @@map("flashcards")
+}
