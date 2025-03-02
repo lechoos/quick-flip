@@ -63,10 +63,10 @@ model VerificationToken {
 }
 
 model FlashcardCategory {
-  id        String      @id @default(cuid())
-  name      String
-  slug      String
-  Flashcard Flashcard[]
+  id         String      @id @default(cuid())
+  name       String
+  slug       String      @unique
+  flashcards Flashcard[]
 
   @@map("categories")
 }
