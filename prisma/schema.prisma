@@ -72,11 +72,12 @@ model FlashcardCategory {
 }
 
 model Flashcard {
-  id         String            @id @default(cuid())
-  front      String
-  back       String
-  categoryId String
-  category   FlashcardCategory @relation(fields: [categoryId], references: [id])
+  id           String            @id @default(cuid())
+  front        String
+  back         String
+  partOfSpeech String?
+  categoryId   String
+  category     FlashcardCategory @relation(fields: [categoryId], references: [id])
 
   @@map("flashcards")
 }
