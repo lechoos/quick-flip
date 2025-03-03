@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import type { FormField } from '@/types/FormField';
-import { AuthForm } from '@/components/AuthForm';
+import { AuthForm } from '@/components/forms/AuthForm';
 import { registerSchema, RegisterSchemaType } from '@/lib/formSchemas';
 
 const registerFields: FormField<RegisterSchemaType>[] = [

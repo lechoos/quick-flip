@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import type { FormField } from '@/types/FormField';
-import { AuthForm } from '@/components/AuthForm';
+import { AuthForm } from '@/components/forms/AuthForm';
 import { loginSchema, LoginSchemaType } from '@/lib/formSchemas';
 
 const loginFields: FormField<LoginSchemaType>[] = [

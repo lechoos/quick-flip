@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/atoms/card';
 
 type LayoutProps = {
   children: ReactNode;

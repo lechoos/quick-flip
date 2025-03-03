@@ -1,4 +1,4 @@
-import { Alert } from '@/components/Alert';
+import { Alert } from '@/components/ui/Alert';
 
 export default async function Home() {
   return (

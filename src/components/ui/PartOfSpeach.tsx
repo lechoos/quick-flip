@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, ReactNode, RefObject } from 'react';
+import { ReactNode, RefObject, useEffect, useState } from 'react';
 
 type PartOfSpeechProps = {
   children: ReactNode;
@@ -22,7 +22,10 @@ export const PartOfSpeech = ({ children, color = 'primary', className, targetRef
   const updatePosition = () => {
     if (targetRef.current) {
       const { top, right } = targetRef.current.getBoundingClientRect();
-      setPosition({ x: right + offsetX + window.scrollX, y: top + offsetY + window.scrollY });
+      setPosition({
+        x: right + offsetX + window.scrollX,
+        y: top + offsetY + window.scrollY,
+      });
     }
   };
 

@@ -1,4 +1,4 @@
-import { ReactNode, ElementType } from 'react';
+import { ElementType, ReactNode } from 'react';
 import Link from 'next/link';
 
 type CategoryLabelProps = {

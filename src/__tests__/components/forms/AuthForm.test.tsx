@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { AuthForm } from '@/components/AuthForm';
+import { AuthForm } from '@/components/forms/AuthForm';
 import { z } from 'zod';
 import type { FormField } from '@/types/FormField';
 

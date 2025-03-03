@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { useHover } from '@/hooks/useHover';
 import { BadgeHelp } from 'lucide-react';
-import { PartOfSpeech } from '@/components/PartOfSpeach';
+import { PartOfSpeech } from '@/components/ui/PartOfSpeach';
 
 type FlashcardProps = {
   variant: 'primary' | 'secondary' | 'accent' | 'destructive';
