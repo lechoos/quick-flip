@@ -6,11 +6,9 @@ import { BadgeHelp } from 'lucide-react';
 import { Flashcard } from '@/components/atoms/flashcard';
 import { PartOfSpeech } from '@/components/ui/PartOfSpeach';
 
-type NormalCardProps = {
-  variant?: 'primary' | 'secondary' | 'accent' | 'destructive';
-  front: string;
-  partOfSpeech?: 'noun' | 'verb' | 'adjective' | 'adverb' | 'numeral';
-  back: string;
+import type { Flashcard as FlashcardType } from '@/types/Flashcard';
+
+type NormalCardProps = FlashcardType & {
   example?: string;
 };
 
@@ -36,7 +34,7 @@ export const NormalCard = ({ variant = 'primary', front, back, example, partOfSp
   return (
     <Flashcard
       SpeechElement={SpeechElement}
-      className={`bg-${variant} text-${variant}-foreground`}
+      variant={variant}
     >
       <p className="text-3xl">{front}</p>
       <div className="grid gap-y-1 font-inter text-sm">
