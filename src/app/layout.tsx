@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Anonymous_Pro, Inter } from 'next/font/google';
 import './globals.scss';
-import { AuthProvider } from '@/providers/AuthProvider';
 
 const anonymousPro = Anonymous_Pro({
   variable: '--font-anonymous-pro',
@@ -26,9 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AuthProvider>
-        <body className={`${anonymousPro.variable} ${inter.variable} antialiased`}>{children}</body>
-      </AuthProvider>
+      <body className={`${anonymousPro.variable} ${inter.variable} antialiased`}>{children}</body>
     </html>
   );
 }
