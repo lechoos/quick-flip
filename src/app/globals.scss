@@ -46,3 +46,14 @@ html {
 .lucide-eye, .lucide-eye-off {
   @apply h-[2.5rem] aspect-square !important
 }
+
+.learning-card {
+  &--back {
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  &:hover > &--back {
+    transform: translateX(0);
+  }
+}
