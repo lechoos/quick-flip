@@ -1,12 +1,26 @@
+'use client';
+
 import { Flashcard } from '@/components/atoms/flashcard';
 import type { Flashcard as FlashcardType } from '@/types/Flashcard';
+import { ChevronsRight } from 'lucide-react';
 
-export const LearningCard = ({ front, back, variant }: FlashcardType) => (
-  <Flashcard
-    variant={variant}
-    className="learning-card min-h-[150px] text-3xl"
-  >
-    <div className="grid place-items-center h-full">{front}</div>
-    <div className="absolute top-0 left-0 grid place-items-center w-full h-full bg-accent text-accent-foreground learning-card--back">{back}</div>
-  </Flashcard>
-);
+type ContentProps = FlashcardType & { isLearning?: boolean };
+
+export const LearningCard = ({ front, back, variant = 'primary', isLearning = false }: ContentProps) => {
+  return (
+    <Flashcard
+      variant={variant}
+      className="learning-card"
+    >
+      <div className="grid place-items-center h-full">{front}</div>
+      <div className={`absolute top-0 left-0 grid place-items-center w-full h-full learning-card--back ${variant === 'accent' ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'}`}>
+        {back}
+        {isLearning && (
+          <div className={`absolute top-0 right-0 flex items-center px-[0.7rem] h-full translate-x-full z-10 text-${variant}-foreground`}>
+            <ChevronsRight className="w-[3.5rem] h-[3.5rem]" />
+          </div>
+        )}
+      </div>
+    </Flashcard>
+  );
+};

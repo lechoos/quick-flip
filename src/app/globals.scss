@@ -49,11 +49,11 @@ html {
 
 .learning-card {
   &--back {
-    transform: translateX(-100%);
+    transform: translateX(-101%);
     transition: transform 0.5s;
-  }
 
-  &:hover > &--back {
-    transform: translateX(0);
+    &:hover {
+      transform: translateX(0);
+    }
   }
 }
