@@ -5,14 +5,11 @@ import { useHover } from '@/hooks/useHover';
 import { BadgeHelp } from 'lucide-react';
 import { Flashcard } from '@/components/atoms/flashcard';
 import { PartOfSpeech } from '@/components/ui/PartOfSpeach';
-
 import type { Flashcard as FlashcardType } from '@/types/Flashcard';
 
-type NormalCardProps = FlashcardType & {
-  example?: string;
-};
+type DefaultCardProps = FlashcardType & { example?: string };
 
-export const NormalCard = ({ variant = 'primary', front, back, example, partOfSpeech }: NormalCardProps) => {
+export const DefaultCard = ({ front, back, variant, example, partOfSpeech }: DefaultCardProps) => {
   const [hoverRef, isHovered] = useHover();
   const badgeRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +31,7 @@ export const NormalCard = ({ variant = 'primary', front, back, example, partOfSp
   return (
     <Flashcard
       SpeechElement={SpeechElement}
-      variant={variant}
+      variant={variant ?? 'primary'}
     >
       <p className="text-3xl">{front}</p>
       <div className="grid gap-y-1 font-inter text-sm">
@@ -43,6 +40,7 @@ export const NormalCard = ({ variant = 'primary', front, back, example, partOfSp
       </div>
       {partOfSpeech && (
         <div
+          data-testid="help-badge"
           ref={(node) => {
             if (hoverRef.current !== node) {
               hoverRef.current = node!;
