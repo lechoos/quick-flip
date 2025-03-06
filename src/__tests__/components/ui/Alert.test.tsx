@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import { Alert } from '@/components/Alert';
+import { Alert } from '@/components/ui/Alert';
 
 describe('Alert', () => {
   beforeEach(() => {

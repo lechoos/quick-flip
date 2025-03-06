@@ -9,14 +9,12 @@
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 37, 100%, 75%;
+    --primary: 37, 100%, 60%;
     --primary-foreground: 37 100% 15%;
     --primary-border: 37, 100%, 35%;
-    --secondary: 20 100% 79%;
+    --secondary: 20 100% 70%;
     --secondary-foreground: 20 100% 20%;
     --secondary-border: 20 100% 30%;
-    --muted: 20 100% 79% / 0.4;
-    --muted-foreground: 20 100% 20% / 0.4;
     --accent: 90 65% 35%;
     --accent-foreground: 0 0% 100%;
     --accent-border: 90 25% 20%;
@@ -47,4 +45,15 @@ html {
 
 .lucide-eye, .lucide-eye-off {
   @apply h-[2.5rem] aspect-square !important
+}
+
+.learning-card {
+  &--back {
+    transform: translateX(-101%);
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: translateX(0);
+    }
+  }
 }
