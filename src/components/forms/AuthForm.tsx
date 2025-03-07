@@ -70,7 +70,7 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
               id={field.name as string}
               aria-invalid={errors[field.name] ? 'true' : 'false'}
               placeholder={field?.placeholder}
-              className={cn('p-1 w-full text-sm' + ' sm:text-base' + ' bg-primary' + ' text-primary-foreground border-primary-border shadow-primary-border' + ' placeholder:text-primary-foreground/60 focus:outline-none focus:border-[3px]')}
+              className={cn('p-1 w-full text-sm' + ' sm:text-base' + ' bg-primary' + ' text-primary-foreground border-[3px] border-black shadow' + ' placeholder:text-primary-foreground/60 focus:outline-none focus:border-accent')}
             />
             {field.type === 'password' && (
               <Button

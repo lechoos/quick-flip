@@ -6,7 +6,7 @@ export default async function FlashcardsPage() {
   const categories = await getAllCategories();
 
   return (
-    <div className="flex flex-wrap justify-center gap-x-2 gap-y-4 mt-2 mx-2">
+    <div className="grid grid-cols-2 gap-x-2 gap-y-4 mt-2 mx-2">
       {categories.map((category) => (
         <CategoryLabel
           key={category.id}

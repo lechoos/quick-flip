@@ -4,16 +4,13 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-const addShadow = (color: string) => `border-2 border-${color}-border shadow-${color}-normal hover:-translate-y-[4px] hover:shadow-${color}-hover focus-visible:-translate-y-[4px] focus-visible:shadow-${color}-hover active:shadow-none active:translate-y-[4px]`;
-
-const buttonVariants = cva('inline-flex items-center' + ' justify-center px-1 gap-2 whitespace-nowrap rounded-md text-base font-medium rounded-lg focus:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0', {
+const buttonVariants = cva('inline-flex items-center' + ' justify-center px-1 gap-2 whitespace-nowrap rounded-md text-base font-medium rounded-lg focus:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-[3px] border-black shadow-button hover:-translate-y-[4px] hover:shadow-button-hover focus-visible:-translate-y-[4px] focus-visible:shadow-button-hover active:shadow-none active:translate-y-[4px]', {
   variants: {
     variant: {
-      default: `bg-primary text-primary-foreground ${addShadow('primary')}`,
-      secondary: `bg-secondary text-secondary-foreground ${addShadow('secondary')}`,
-      destructive: `bg-destructive text-destructive-foreground ${addShadow('destructive')}`,
-      accent: `bg-accent text-accent-foreground ${addShadow('accent')}`,
-      link: 'text-primary underline-offset-4 hover:underline',
+      default: 'bg-primary text-primary-foreground',
+      secondary: 'bg-secondary text-secondary-foreground',
+      destructive: 'bg-destructive text-destructive-foreground',
+      accent: 'bg-accent text-accent-foreground',
     },
     size: {
       default: 'h-6',
