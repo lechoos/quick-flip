@@ -1,0 +1,13 @@
+.fade-animation {
+  animation: fadeOut 0.7s forwards ease-in;
+}
+
+@keyframes fadeOut {
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

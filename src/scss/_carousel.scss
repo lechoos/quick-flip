@@ -1,0 +1,16 @@
+.embla {
+  margin: 1em auto 0;
+  max-width: 450px;
+  font-size: 2rem;
+  overflow: hidden;
+
+  &-container {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  &-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+}

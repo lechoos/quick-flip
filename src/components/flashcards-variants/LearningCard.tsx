@@ -4,15 +4,15 @@ import { Flashcard } from '@/components/atoms/flashcard';
 import type { Flashcard as FlashcardType } from '@/types/Flashcard';
 import { ChevronsRight } from 'lucide-react';
 
-type ContentProps = Omit<FlashcardType, 'partOfSpeech'> & { isLearning?: boolean };
+type ContentProps = Omit<FlashcardType, 'partOfSpeech'> & { isLearning?: boolean; className?: string };
 
-export const LearningCard = ({ front, back, variant = 'primary', isLearning = false }: ContentProps) => {
+export const LearningCard = ({ front, back, variant = 'primary', isLearning = false, className }: ContentProps) => {
   return (
     <Flashcard
       variant={variant}
-      className="learning-card"
+      className={`learning-card ${className}`}
     >
-      <div className="grid place-items-center h-full">{front}</div>
+      <div>{front}</div>
       <div className={`absolute top-0 left-0 grid place-items-center w-full h-full learning-card--back ${variant === 'accent' ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'}`}>
         {back}
         {isLearning && (

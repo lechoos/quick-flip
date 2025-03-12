@@ -8,12 +8,8 @@ import { AlignJustify, Plus } from 'lucide-react';
 
 const links = [
   {
-    label: 'About',
-    href: '/about',
-  },
-  {
     label: 'Demo',
-    href: '/demo',
+    href: '/flashcards',
   },
 ];
 
