@@ -1,6 +1,6 @@
 import { ModeView } from '@/pages/ModeView';
 import { getFlashcards } from '@/lib/actions';
-import { Carousel } from '@/components/ui/Carousel';
+import { ModeContent } from '@/pages/ModeView/ModeContent';
 import { LearningCard } from '@/components/flashcards-variants/LearningCard';
 
 type ModeProps = {
@@ -24,7 +24,10 @@ export default async function ModePage({ params }: ModeProps) {
   return (
     <>
       <ModeView mode={mode} />
-      <Carousel slides={cards!} />
+      <ModeContent
+        slug={slug}
+        slides={cards!}
+      />
     </>
   );
 }
