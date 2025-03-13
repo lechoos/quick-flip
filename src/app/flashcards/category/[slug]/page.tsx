@@ -1,17 +1,7 @@
-import { Link } from '@/components/atoms/link';
-import { capitalize } from '@/lib/utils';
 import type { SlugParams } from '@/types/SlugParams';
+import { LinkTile } from '@/components/ui/LinkTile';
 
 export const dynamic = 'force-dynamic';
-
-const LinkTile = ({ path, mode }: { path: string; mode: 'practice' | 'test' }) => (
-  <Link
-    className="flex justify-center items-center py-4 md:py-8 font-bold bg-primary rounded-xl border-[5px] border-black shadow"
-    href={`/flashcards/category/${path}/${mode}`}
-  >
-    {capitalize(mode)} mode
-  </Link>
-);
 
 export default async function CategoryPage({ params }: SlugParams) {
   const { slug } = await params;
