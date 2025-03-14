@@ -3,12 +3,12 @@ import { getCategory } from '@/lib/actions';
 import { Link } from '@/components/atoms/link';
 import { capitalize } from '@/lib/utils';
 
-type LayoutProps = {
+type Props = {
   children: ReactNode;
   params: Promise<{ slug: string }>;
 };
 
-export default async function CategoryLayout({ children, params }: LayoutProps) {
+export default async function CategoryLayout({ children, params }: Props) {
   const { slug } = await params;
   const category = await getCategory(slug);
 

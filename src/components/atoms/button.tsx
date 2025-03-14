@@ -25,11 +25,11 @@ const buttonVariants = cva('inline-flex items-center' + ' justify-center px-1 ga
   },
 });
 
-export interface ButtonProps extends react.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+export interface Props extends react.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
-const Button = ({ className, variant, size, asChild = false, ...props }: ButtonProps) => {
+const Button = ({ className, variant, size, asChild = false, ...props }: Props) => {
   const Comp = asChild ? Slot : 'button';
   return (
     <Comp

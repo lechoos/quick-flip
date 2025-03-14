@@ -13,12 +13,12 @@ const links = [
   },
 ];
 
-type ButtonProps = {
+type Props = {
   isOpen: boolean;
   setIsOpen: () => void;
 };
 
-const Button = ({ isOpen, setIsOpen }: ButtonProps) => {
+const Button = ({ isOpen, setIsOpen }: Props) => {
   return (
     <button
       onClick={() => setIsOpen()}

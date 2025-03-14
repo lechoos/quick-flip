@@ -2,14 +2,13 @@ import type { Dispatch, SetStateAction } from 'react';
 import { use } from 'react';
 import { SlidesContext } from '@/context/SlidesContext';
 import useEmblaCarousel from 'embla-carousel-react';
-import { Button } from '@/components/atoms/button';
-import { CircleCheckBig, Play } from 'lucide-react';
+import { PracticeMode } from '@/pages/Mode/ModeContent/PracticeMode';
 
-type CarouselProps = {
+type Props = {
   setIsFinished: Dispatch<SetStateAction<boolean>>;
 };
 
-export const Carousel = ({ setIsFinished }: CarouselProps) => {
+export const Carousel = ({ setIsFinished }: Props) => {
   const slides = use(SlidesContext);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ watchDrag: false });
@@ -32,19 +31,7 @@ export const Carousel = ({ setIsFinished }: CarouselProps) => {
           <div className="embla-container">{slides}</div>
         </div>
         <div className="mt-4 space-x-2">
-          <Button
-            variant="accent"
-            className="aspect-square rounded-full"
-          >
-            <Play className="!size-[3.5rem]" />
-          </Button>
-          <Button
-            variant="accent"
-            className="aspect-square rounded-full"
-            onClick={slideNext}
-          >
-            <CircleCheckBig className="!size-[3.5rem]" />
-          </Button>
+          <PracticeMode slideNext={slideNext} />
         </div>
       </>
     );

@@ -4,9 +4,9 @@ import { Flashcard } from '@/components/atoms/flashcard';
 import type { Flashcard as FlashcardType } from '@/types/Flashcard';
 import { ChevronsRight } from 'lucide-react';
 
-type ContentProps = Omit<FlashcardType, 'partOfSpeech'> & { isLearning?: boolean; className?: string };
+type Props = Omit<FlashcardType, 'partOfSpeech'> & { isLearning?: boolean; className?: string };
 
-export const LearningCard = ({ front, back, variant = 'primary', isLearning = false, className }: ContentProps) => {
+export const LearningCard = ({ front, back, variant = 'primary', isLearning = false, className }: Props) => {
   return (
     <Flashcard
       variant={variant}

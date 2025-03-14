@@ -4,9 +4,9 @@ import { DefaultCard } from '@/components/flashcards-variants/DefaultCard';
 import type { Flashcard } from '@/types/Flashcard';
 import { renderCard, commonTests } from '@/__tests__/helpers/cardTestHelpers';
 
-type TestProps = Pick<Flashcard, 'partOfSpeech' | 'variant'> & { example?: string };
+type Props = Pick<Flashcard, 'partOfSpeech' | 'variant'> & { example?: string };
 
-const renderElement = (props?: TestProps) => renderCard(DefaultCard, props);
+const renderElement = (props?: Props) => renderCard(DefaultCard, props);
 
 describe('Default Card', () => {
   commonTests(renderElement);

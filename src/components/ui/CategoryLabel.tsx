@@ -1,14 +1,14 @@
 import { ElementType, ReactNode } from 'react';
 import Link from 'next/link';
 
-type CategoryLabelProps = {
+type Props = {
   children: ReactNode;
   Icon: ElementType;
   variant?: 'primary' | 'secondary' | 'accent' | 'destructive';
   href: string;
 };
 
-export const CategoryLabel = ({ children, Icon, variant = 'destructive', href }: CategoryLabelProps) => {
+export const CategoryLabel = ({ children, Icon, variant = 'destructive', href }: Props) => {
   return (
     <Link
       href={{ pathname: href }}

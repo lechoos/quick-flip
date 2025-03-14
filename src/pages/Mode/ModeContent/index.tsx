@@ -6,12 +6,12 @@ import { SlidesContext } from '@/context/SlidesContext';
 import { Carousel } from '@/components/ui/Carousel';
 import { FinishScreen } from '@/pages/Mode/ModeContent/FinishScreen';
 
-type ModeContentProps = {
+type Props = {
   slides: JSX.Element[];
   slug: string;
 };
 
-export const ModeContent = ({ slides, slug }: ModeContentProps) => {
+export const ModeContent = ({ slides, slug }: Props) => {
   const [isFinished, setIsFinished] = useState(false);
 
   return (

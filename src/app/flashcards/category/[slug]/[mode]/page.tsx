@@ -5,11 +5,11 @@ import { LearningCard } from '@/components/flashcards-variants/LearningCard';
 
 export const dynamic = 'force-dynamic';
 
-type ModeProps = {
+type Props = {
   params: Promise<{ slug: string; mode: 'practice' | 'test' }>;
 };
 
-export default async function ModePage({ params }: ModeProps) {
+export default async function ModePage({ params }: Props) {
   const { slug, mode } = await params;
 
   const cardsContent = await getFlashcards(slug);

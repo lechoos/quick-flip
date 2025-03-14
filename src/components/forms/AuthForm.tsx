@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 import type { FormField } from '@/types/FormField';
 import { Alert } from '@/components/ui/Alert';
 
-type AuthFormProps<T extends z.ZodType> = {
+type Props<T extends z.ZodType> = {
   fields: FormField<T>[];
   validationSchema: T;
   onSubmitAction: (data: z.infer<T>) => Promise<void>;
@@ -22,7 +22,7 @@ type AuthFormProps<T extends z.ZodType> = {
   serverError?: string;
 };
 
-export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubmitAction, submitText, isLoading = false, serverError }: AuthFormProps<T>) => {
+export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubmitAction, submitText, isLoading = false, serverError }: Props<T>) => {
   const [showPasswords, setShowPasswords] = useState<Record<string, boolean>>({});
 
   const form = useForm<z.infer<T>>({

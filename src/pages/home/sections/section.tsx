@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-type SectionProps = {
+type Props = {
   variant?: 'primary' | 'secondary' | 'destructive';
   title: string;
   isList?: boolean;
@@ -8,7 +8,7 @@ type SectionProps = {
   children?: ReactNode;
 };
 
-export const Section = ({ variant = 'primary', title, isList = false, border, children }: SectionProps) => {
+export const Section = ({ variant = 'primary', title, isList = false, border, children }: Props) => {
   return (
     <section className={`p-3 bg-${variant} text-${variant}-foreground ${border && 'border-[5px] border-black'}`}>
       <h2 className="my-4 underline">{title}</h2>

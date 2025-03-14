@@ -7,9 +7,9 @@ import { Flashcard } from '@/components/atoms/flashcard';
 import { PartOfSpeech } from '@/components/ui/PartOfSpeach';
 import type { Flashcard as FlashcardType } from '@/types/Flashcard';
 
-type DefaultCardProps = FlashcardType & { example?: string };
+type Props = FlashcardType & { example?: string };
 
-export const DefaultCard = ({ front, back, variant, example, partOfSpeech }: DefaultCardProps) => {
+export const DefaultCard = ({ front, back, variant, example, partOfSpeech }: Props) => {
   const [hoverRef, isHovered] = useHover();
   const badgeRef = useRef<HTMLDivElement>(null);
 

@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-type LogoProps = {
+type Props = {
   size?: number;
   className?: string;
 };
 
-export const QuickLogo = ({ size, className }: LogoProps) => {
+export const QuickLogo = ({ size, className }: Props) => {
   return (
     <Image
       src="/quick-logo.svg"

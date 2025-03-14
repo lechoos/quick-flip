@@ -2,7 +2,7 @@
 
 import { ReactNode, RefObject, useEffect, useState } from 'react';
 
-type PartOfSpeechProps = {
+type Props = {
   children: ReactNode;
   color?: string;
   className?: string;
@@ -16,7 +16,7 @@ type Position = {
   y: number;
 };
 
-export const PartOfSpeech = ({ children, color = 'primary', className, targetRef, offsetY = 0, offsetX = 10 }: PartOfSpeechProps) => {
+export const PartOfSpeech = ({ children, color = 'primary', className, targetRef, offsetY = 0, offsetX = 10 }: Props) => {
   const [position, setPosition] = useState<Position | null>(null);
 
   const updatePosition = () => {

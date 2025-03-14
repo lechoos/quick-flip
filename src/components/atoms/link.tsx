@@ -1,13 +1,13 @@
 import NextLink from 'next/link';
 import { ReactNode } from 'react';
 
-type LinkProps = {
+type Props = {
   href: string;
   children: ReactNode;
   className?: string;
 };
 
-export const Link = ({ href, children, className }: LinkProps) => {
+export const Link = ({ href, children, className }: Props) => {
   return (
     <NextLink
       href={{ pathname: href }}

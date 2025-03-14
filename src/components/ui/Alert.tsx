@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { XIcon } from 'lucide-react';
 
-type AlertProps = {
+type Props = {
   message: string;
   variant?: 'success' | 'error' | 'warning' | 'info';
   duration?: number;
@@ -18,7 +18,7 @@ const variantStyles = {
   info: 'bg-blue-100 text-blue-800 border-blue-300',
 };
 
-export const Alert = ({ message, onClose, variant = 'error', duration, className }: AlertProps) => {
+export const Alert = ({ message, onClose, variant = 'error', duration, className }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleClose = useCallback(() => {

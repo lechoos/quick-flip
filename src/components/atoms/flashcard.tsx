@@ -1,13 +1,13 @@
 import { ElementType, ReactNode } from 'react';
 
-type FlashcardProps = {
+type Props = {
   className?: string;
   children: ReactNode;
   SpeechElement?: ElementType | false;
   variant?: 'primary' | 'secondary' | 'accent' | 'destructive';
 };
 
-export const Flashcard = ({ className, children, SpeechElement, variant = 'primary' }: FlashcardProps) => (
+export const Flashcard = ({ className, children, SpeechElement, variant = 'primary' }: Props) => (
   <>
     <div
       data-testid={'flashcard-container-' + variant}
