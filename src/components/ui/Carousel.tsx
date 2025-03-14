@@ -1,14 +1,17 @@
-import { Dispatch, JSX, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { use } from 'react';
+import { SlidesContext } from '@/context/SlidesContext';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Button } from '@/components/atoms/button';
 import { CircleCheckBig, Play } from 'lucide-react';
 
 type CarouselProps = {
-  slides: JSX.Element[];
   setIsFinished: Dispatch<SetStateAction<boolean>>;
 };
 
-export const Carousel = ({ slides, setIsFinished }: CarouselProps) => {
+export const Carousel = ({ setIsFinished }: CarouselProps) => {
+  const slides = use(SlidesContext);
+
   const [emblaRef, emblaApi] = useEmblaCarousel({ watchDrag: false });
 
   const slideNext = () => {
