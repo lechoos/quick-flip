@@ -1,7 +1,9 @@
-import { ModeView } from '@/pages/ModeView';
+import { ModeView } from '@/pages/Mode/ModeView';
 import { getFlashcards } from '@/lib/actions';
-import { ModeContent } from '@/pages/ModeView/ModeContent';
+import { ModeContent } from '@/pages/Mode/ModeContent';
 import { LearningCard } from '@/components/flashcards-variants/LearningCard';
+
+export const dynamic = 'force-dynamic';
 
 type ModeProps = {
   params: Promise<{ slug: string; mode: 'practice' | 'test' }>;
