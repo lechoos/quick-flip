@@ -1,6 +1,6 @@
 .embla {
   margin: 1em auto 0;
-  max-width: 450px;
+  width: clamp(200px, 100%, 450px);
   font-size: 2rem;
   overflow: hidden;
 
