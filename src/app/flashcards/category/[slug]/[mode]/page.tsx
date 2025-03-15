@@ -27,6 +27,7 @@ export default async function ModePage({ params }: Props) {
     <>
       <ModeView mode={mode} />
       <ModeContent
+        mode={mode}
         slug={slug}
         slides={cards!}
       />
