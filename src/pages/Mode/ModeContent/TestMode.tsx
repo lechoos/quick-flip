@@ -11,9 +11,12 @@ type Props = {
   slideNext: () => void;
 };
 
+const ScrollNextUI = ({ clickHandler }: { clickHandler: () => void }) => <Button onClick={clickHandler}>Next</Button>;
+
 export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState(false);
+  const [hasAnswered, setHasAnswered] = useState(false);
   const [duration, setDuration] = useState(0);
 
   const [currentSlideElement, setCurrentSlideElement] = useState<JSX.Element | null>(null);
@@ -37,6 +40,7 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) =
       return;
     }
 
+    setHasAnswered(true);
     const isCorrect = checkAnswer(value, currentSlideElement?.props.back);
 
     if (isCorrect) {
@@ -48,6 +52,12 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) =
     setValue('');
   };
 
+  const scrollHandler = () => {
+    updateSlideClass(currentSlide, '');
+    setHasAnswered(false);
+    slideNext();
+  };
+
   const closeAlertHandler = () => {
     setError(false);
   };
@@ -56,34 +66,38 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) =
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [currentSlide]);
 
   useEffect(() => {
     if (slides) {
       setCurrentSlideElement(slides[currentSlide]);
     }
-  }, []);
+  }, [currentSlide]);
 
   return (
     <>
-      <form
-        className="flex flex-col gap-y-2 items-center"
-        onSubmit={submitHandler}
-      >
-        <Input
-          ref={inputRef}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className="py-1 px-2 text-lg text-secondary-foreground bg-secondary border-[3px] border-secondary-border rounded-3xl focus:border-[5px] focus:outline-none"
-          type="text"
-        />
-        <Button
-          variant="secondary"
-          type="submit"
+      {hasAnswered ? (
+        <ScrollNextUI clickHandler={scrollHandler} />
+      ) : (
+        <form
+          className="flex flex-col gap-y-2 items-center"
+          onSubmit={submitHandler}
         >
-          Check
-        </Button>
-      </form>
+          <Input
+            ref={inputRef}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            className="py-1 px-2 text-lg text-secondary-foreground bg-secondary border-[3px] border-secondary-border rounded-3xl focus:border-[5px] focus:outline-none"
+            type="text"
+          />
+          <Button
+            variant="secondary"
+            type="submit"
+          >
+            Check
+          </Button>
+        </form>
+      )}
       {error && (
         <Alert
           onClose={closeAlertHandler}
