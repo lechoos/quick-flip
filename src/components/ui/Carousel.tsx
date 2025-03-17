@@ -19,15 +19,44 @@ export const Carousel = ({ setIsFinished }: Props) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // array of empty strings corresponding with slides' length
+  const [slideClasses, setSlideClasses] = useState<string[]>(Array(slides?.length).fill(''));
+
+  // updating slideClasses with a new class at index
+  // provided as an argument
+  const updateSlideClass = (index: number, className: string) => {
+    // creating a new array with elements existing in
+    // slideClasses array
+    const newSlideClasses = [...slideClasses];
+
+    // setting a new class to the element at index
+    // provided as an argument
+    newSlideClasses[index] = className;
+
+    // updating slideClasses array with a newly created
+    // newSlideClasses array
+    setSlideClasses(newSlideClasses);
+  };
+
+  // function to scroll a carousel
   const slideNext = () => {
-    if (emblaApi?.canScrollNext()) {
-      emblaApi?.scrollNext(true);
-      setCurrentSlide((prevSlide) => prevSlide + 1);
+    // ending a function execution if emblaApi is undefined
+    if (!emblaApi) return;
+
+    // checking there is a next slide to a current one
+    if (emblaApi.canScrollNext()) {
+      // scrolling to the next slide and updating
+      // currentSlide index
+      emblaApi.scrollNext(true);
+      setCurrentSlide(emblaApi.selectedScrollSnap());
     } else {
+      // setting a state to display a finish screen
       setIsFinished(true);
     }
   };
 
+  // returning information that there are no flashcards
+  // if slides is null
   if (!slides) {
     return (
       <h2 className="flex flex-col gap-y-2 mt-2 text-center">
@@ -37,6 +66,18 @@ export const Carousel = ({ setIsFinished }: Props) => {
     );
   }
 
+  // function to map a slides array to a new array with
+  // clone elements of an original array
+  const slidesWithClasses = slides.map((slide, index) =>
+    // making a clone of a slide and setting its
+    // className prop to already existing classes and
+    // classes from slideClasses array at selected index
+    cloneElement(slide, {
+      className: `${slide.props.className || ''} ${slideClasses[index]}`,
+    }),
+  );
+
+  // returning a UI
   return (
     <>
       <div
