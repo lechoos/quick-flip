@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState, cloneElement } from 'react';
 import { use } from 'react';
 import { SlidesContext } from '@/context/SlidesContext';
 import { ModeContext } from '@/context/ModeContext';
@@ -84,9 +84,19 @@ export const Carousel = ({ setIsFinished }: Props) => {
         className="embla"
         ref={emblaRef}
       >
-        <div className="embla-container">{slides}</div>
+        <div className="embla-container">{slidesWithClasses}</div>
       </div>
-      <div className="mt-4 space-x-2">{mode === 'practice' ? <PracticeMode slideNext={slideNext} /> : <TestMode back={slides[currentSlide]?.props.back} />}</div>
+      <div className="mt-4 space-x-2">
+        {mode === 'practice' ? (
+          <PracticeMode slideNext={slideNext} />
+        ) : (
+          <TestMode
+            currentSlide={currentSlide}
+            updateSlideClass={updateSlideClass}
+            slideNext={slideNext}
+          />
+        )}
+      </div>
     </>
   );
 };
