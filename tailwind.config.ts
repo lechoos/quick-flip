@@ -143,10 +143,10 @@ export default {
       keyframes: {
         slideIn: {
           from: {
-            transform: 'translateY(-250px)',
+            transform: 'translate(-50%, -250px)',
           },
           to: {
-            transform: 'translateY(0)',
+            transform: 'translate(-50%, 0)',
           },
         },
       },

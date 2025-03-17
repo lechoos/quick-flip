@@ -1,0 +1,22 @@
+.learning-card {
+  &-shown {
+    .learning-card--back {
+      transform: translateX(0) !important;
+    }
+  }
+
+  &--back {
+    transform: translateX(-101%);
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: translateX(0);
+    }
+  }
+}
+
+.wrong-answer {
+  .learning-card--back {
+    @apply bg-destructive;
+  }
+}
