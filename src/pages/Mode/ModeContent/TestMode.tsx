@@ -1,19 +1,31 @@
-import { type FormEvent, useState, useRef, useEffect } from 'react';
+import { type FormEvent, type JSX, useState, useRef, useEffect, use } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
+import { SlidesContext } from '@/context/SlidesContext';
 import { Input } from '@/components/atoms/input';
 import { Button } from '@/components/atoms/button';
 import { Alert } from '@/components/ui/Alert';
 
 type Props = {
-  back: string;
+  currentSlide: number;
+  updateSlideClass: (index: number, className: string) => void;
+  slideNext: () => void;
 };
 
-export const TestMode = ({ back }: Props) => {
+export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState(false);
   const [duration, setDuration] = useState(0);
+
+  const [currentSlideElement, setCurrentSlideElement] = useState<JSX.Element | null>(null);
+
+  const slides = use(SlidesContext);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const returnDuration = useDebounce(() => setDuration(5000), 1000);
+
+  const checkAnswer = (userAnswer: string, correctAnswer: string) => {
+    return userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
+  };
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +37,14 @@ export const TestMode = ({ back }: Props) => {
       return;
     }
 
-    console.log(value === back);
+    const isCorrect = checkAnswer(value, currentSlideElement?.props.back);
+
+    if (isCorrect) {
+      updateSlideClass(currentSlide, 'learning-card-shown');
+    } else {
+      updateSlideClass(currentSlide, 'learning-card-shown wrong-answer');
+    }
+
     setValue('');
   };
 
@@ -36,6 +55,12 @@ export const TestMode = ({ back }: Props) => {
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (slides) {
+      setCurrentSlideElement(slides[currentSlide]);
     }
   }, []);
 
@@ -63,7 +88,7 @@ export const TestMode = ({ back }: Props) => {
         <Alert
           onClose={closeAlertHandler}
           duration={duration}
-          message="You can't submit an empty field."
+          message="You can't check an empty field."
         />
       )}
     </>
