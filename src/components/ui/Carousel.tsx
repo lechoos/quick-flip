@@ -9,9 +9,10 @@ import { Link } from '@/components/atoms/link';
 
 type Props = {
   setIsFinished: Dispatch<SetStateAction<boolean>>;
+  setScore: Dispatch<SetStateAction<number>>;
 };
 
-export const Carousel = ({ setIsFinished }: Props) => {
+export const Carousel = ({ setIsFinished, setScore }: Props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ watchDrag: false });
 
   const slides = use(SlidesContext);
@@ -94,6 +95,7 @@ export const Carousel = ({ setIsFinished }: Props) => {
             currentSlide={currentSlide}
             updateSlideClass={updateSlideClass}
             slideNext={slideNext}
+            setScore={setScore}
           />
         )}
       </div>

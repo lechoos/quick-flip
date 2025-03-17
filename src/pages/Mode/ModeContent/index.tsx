@@ -15,6 +15,7 @@ type Props = {
 
 export const ModeContent = ({ slides, slug, mode }: Props) => {
   const [isFinished, setIsFinished] = useState(false);
+  const [score, setScore] = useState(0);
 
   return (
     <ContextProvider
@@ -25,7 +26,20 @@ export const ModeContent = ({ slides, slug, mode }: Props) => {
         Context={ModeContext}
         value={mode}
       >
-        <section className="flex flex-col items-center mt-3 wrapper">{isFinished ? <FinishScreen slug={slug} /> : <Carousel setIsFinished={setIsFinished} />}</section>
+        <section className="flex flex-col items-center mt-3 wrapper">
+          {isFinished ? (
+            <FinishScreen
+              score={score}
+              slug={slug}
+              mode={mode}
+            />
+          ) : (
+            <Carousel
+              setScore={setScore}
+              setIsFinished={setIsFinished}
+            />
+          )}
+        </section>
       </ContextProvider>
     </ContextProvider>
   );
