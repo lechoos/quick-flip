@@ -1,4 +1,4 @@
-import react from 'react';
+import react, { type RefObject } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
@@ -27,6 +27,7 @@ const buttonVariants = cva('inline-flex items-center' + ' justify-center px-1 ga
 
 export interface Props extends react.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  ref?: RefObject<HTMLButtonElement | null>;
 }
 
 const Button = ({ className, variant, size, asChild = false, ...props }: Props) => {

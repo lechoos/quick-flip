@@ -1,19 +1,33 @@
-import { type FormEvent, type JSX, useState, useRef, useEffect, use } from 'react';
+import { type FormEvent, type JSX, type Dispatch, type SetStateAction, type RefObject, useState, useRef, useEffect, use } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import { SlidesContext } from '@/context/SlidesContext';
 import { Input } from '@/components/atoms/input';
 import { Button } from '@/components/atoms/button';
 import { Alert } from '@/components/ui/Alert';
+import { checkAnswer } from '@/lib/utils';
 
 type Props = {
   currentSlide: number;
   updateSlideClass: (index: number, className: string) => void;
   slideNext: () => void;
+  setScore: Dispatch<SetStateAction<number>>;
 };
 
-const ScrollNextUI = ({ clickHandler }: { clickHandler: () => void }) => <Button onClick={clickHandler}>Next</Button>;
+type ScrollProps = {
+  ref: RefObject<HTMLButtonElement | null>;
+  clickHandler: () => void;
+};
 
-export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) => {
+const ScrollNextUI = ({ clickHandler, ref }: ScrollProps) => (
+  <Button
+    ref={ref}
+    onClick={clickHandler}
+  >
+    Next
+  </Button>
+);
+
+export const TestMode = ({ currentSlide, updateSlideClass, slideNext, setScore }: Props) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState(false);
   const [hasAnswered, setHasAnswered] = useState(false);
@@ -24,11 +38,9 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) =
   const slides = use(SlidesContext);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const returnDuration = useDebounce(() => setDuration(5000), 1000);
+  const scrollRef = useRef<HTMLButtonElement>(null);
 
-  const checkAnswer = (userAnswer: string, correctAnswer: string) => {
-    return userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
-  };
+  const returnDuration = useDebounce(() => setDuration(5000), 1000);
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,6 +56,7 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) =
     const isCorrect = checkAnswer(value, currentSlideElement?.props.back);
 
     if (isCorrect) {
+      setScore((prevScore) => prevScore + 1);
       updateSlideClass(currentSlide, 'learning-card-shown');
     } else {
       updateSlideClass(currentSlide, 'learning-card-shown wrong-answer');
@@ -69,6 +82,12 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) =
   }, [currentSlide]);
 
   useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.focus();
+    }
+  }, [hasAnswered]);
+
+  useEffect(() => {
     if (slides) {
       setCurrentSlideElement(slides[currentSlide]);
     }
@@ -77,7 +96,10 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext }: Props) =
   return (
     <>
       {hasAnswered ? (
-        <ScrollNextUI clickHandler={scrollHandler} />
+        <ScrollNextUI
+          ref={scrollRef}
+          clickHandler={scrollHandler}
+        />
       ) : (
         <form
           className="flex flex-col gap-y-2 items-center"
