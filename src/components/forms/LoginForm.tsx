@@ -49,7 +49,7 @@ export const LoginForm = () => {
             setError('An unknown error occurred. Try again later');
         }
       } else if (response?.ok) {
-        router.push('/');
+        router.push('/flashcards');
         router.refresh();
       }
     } catch (ex: any) {

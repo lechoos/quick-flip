@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Anonymous_Pro, Inter } from 'next/font/google';
 import './globals.scss';
+import { ReactNode } from 'react';
+import { Navigation } from '@/components/ui/Navigation';
 
 const anonymousPro = Anonymous_Pro({
   variable: '--font-anonymous-pro',
@@ -21,11 +23,14 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${anonymousPro.variable} ${inter.variable} antialiased`}>{children}</body>
+      <body className={`${anonymousPro.variable} ${inter.variable} antialiased mx-auto`}>
+        <Navigation />
+        {children}
+      </body>
     </html>
   );
 }

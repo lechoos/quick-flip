@@ -52,3 +52,4 @@ next-env.d.ts
 
 # other
 **/migrate-prod.bat
+**/reset-client.bat

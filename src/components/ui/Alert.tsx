@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { XIcon } from 'lucide-react';
 
-type AlertProps = {
+type Props = {
   message: string;
   variant?: 'success' | 'error' | 'warning' | 'info';
   duration?: number;
@@ -18,7 +18,7 @@ const variantStyles = {
   info: 'bg-blue-100 text-blue-800 border-blue-300',
 };
 
-export const Alert = ({ message, onClose, variant = 'error', duration, className }: AlertProps) => {
+export const Alert = ({ message, onClose, variant = 'error', duration, className }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleClose = useCallback(() => {
@@ -37,16 +37,16 @@ export const Alert = ({ message, onClose, variant = 'error', duration, className
 
   return (
     <div
-      className={`absolute top-[5%] flex items-center justify-center px-6 py-4 w-full max-w-[400px] rounded border-2 animate-slideIn z-20 ${variantStyles[variant]} ${className}`}
+      className={`absolute top-[5%] left-1/2 flex items-center justify-center !mx-0 px-3 py-2 sm:px-6 sm:py-4 w-full max-w-[250px] sm:max-w-[400px] rounded border-2 -translate-x-1/2 animate-slideIn z-[100] ${variantStyles[variant]} ${className}`}
       role="alert"
     >
-      <p className="text-2xl">{message}</p>
+      <p className="text-base sm:text-2xl">{message}</p>
       <button
         onClick={handleClose}
         className="absolute top-0 left-0 p-[5px] hover:opacity-75"
         aria-label="Close alert"
       >
-        <XIcon className="h-[3.5rem] w-[3.5rem]" />
+        <XIcon className="h-[2.5rem] w-[2.5rem] sm:h-[3.5rem] sm:w-[3.5rem]" />
       </button>
     </div>
   );

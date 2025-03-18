@@ -1,9 +1,9 @@
 import { HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
-type PropsType = HTMLAttributes<HTMLDivElement>;
+type Props = HTMLAttributes<HTMLDivElement>;
 
-const Card = ({ className, ...props }: PropsType) => (
+const Card = ({ className, ...props }: Props) => (
   <div
     className={cn('rounded-xl border-2 overflow-hidden', className)}
     {...props}
@@ -11,7 +11,7 @@ const Card = ({ className, ...props }: PropsType) => (
 );
 Card.displayName = 'Card';
 
-const CardHeader = ({ className, ...props }: PropsType) => (
+const CardHeader = ({ className, ...props }: Props) => (
   <div
     className={cn('flex flex-col space-y-1.5 p-2', className)}
     {...props}
@@ -19,7 +19,7 @@ const CardHeader = ({ className, ...props }: PropsType) => (
 );
 CardHeader.displayName = 'CardHeader';
 
-const CardTitle = ({ className, ...props }: PropsType) => (
+const CardTitle = ({ className, ...props }: Props) => (
   <div
     className={cn('font-semibold leading-none' + ' tracking-tight', className)}
     {...props}
@@ -27,7 +27,7 @@ const CardTitle = ({ className, ...props }: PropsType) => (
 );
 CardTitle.displayName = 'CardTitle';
 
-const CardDescription = ({ className, ...props }: PropsType) => (
+const CardDescription = ({ className, ...props }: Props) => (
   <div
     className={cn('text-sm text-muted-foreground', className)}
     {...props}
@@ -35,7 +35,7 @@ const CardDescription = ({ className, ...props }: PropsType) => (
 );
 CardDescription.displayName = 'CardDescription';
 
-const CardContent = ({ className, ...props }: PropsType) => (
+const CardContent = ({ className, ...props }: Props) => (
   <div
     className={cn('p-2 pt-0', className)}
     {...props}
@@ -43,7 +43,7 @@ const CardContent = ({ className, ...props }: PropsType) => (
 );
 CardContent.displayName = 'CardContent';
 
-const CardFooter = ({ className, ...props }: PropsType) => (
+const CardFooter = ({ className, ...props }: Props) => (
   <div
     className={cn('flex items-center p-2 pt-0', className)}
     {...props}

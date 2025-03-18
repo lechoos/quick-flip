@@ -1,3 +1,5 @@
+@use '../scss/utils';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,21 +23,19 @@
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
     --destructive-border: 0 75% 25%;
-    --ring: 222.2 84% 4.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
   }
 }
 @layer base {
   body {
     @apply bg-background text-foreground;
-  }
 
-  h1 {
-    @apply font-anonymous-pro font-bold text-4xl;
+    h1 {
+      @apply font-anonymous-pro font-bold text-4xl;
+    }
+
+    h2 {
+      @apply font-anonymous-pro font-bold text-3xl;
+    }
   }
 }
 
@@ -43,17 +43,6 @@ html {
   font-size: 62.5%;
 }
 
-.lucide-eye, .lucide-eye-off {
-  @apply h-[2.5rem] aspect-square !important
-}
-
-.learning-card {
-  &--back {
-    transform: translateX(-101%);
-    transition: transform 0.5s;
-
-    &:hover {
-      transform: translateX(0);
-    }
-  }
+.wrapper {
+  @apply mx-auto px-2 xl:px-0 w-full max-w-[1200px];
 }
