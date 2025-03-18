@@ -1,4 +1,4 @@
-import { ModeView } from '@/pages/Mode/ModeView';
+import { ModeAnnounce } from '@/pages/Mode/ModeAnnounce';
 import { getFlashcards } from '@/lib/actions';
 import { ModeContent } from '@/pages/Mode/ModeContent';
 import { LearningCard } from '@/components/flashcards-variants/LearningCard';
@@ -25,7 +25,7 @@ export default async function ModePage({ params }: Props) {
 
   return (
     <>
-      <ModeView mode={mode} />
+      <ModeAnnounce mode={mode} />
       <ModeContent
         mode={mode}
         slug={slug}
