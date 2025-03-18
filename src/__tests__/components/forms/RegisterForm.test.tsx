@@ -71,7 +71,7 @@ describe('RegisterForm', () => {
         email: 'test@example.com',
         password: 'Password123',
         redirect: true,
-        redirectTo: '/',
+        redirectTo: '/flashcards',
       });
     });
   });

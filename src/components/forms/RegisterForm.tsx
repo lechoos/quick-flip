@@ -44,7 +44,7 @@ export const RegisterForm = () => {
           email: data.email,
           password: data.password,
           redirect: true,
-          redirectTo: '/',
+          redirectTo: '/flashcards',
         });
 
         if (result?.error) {
