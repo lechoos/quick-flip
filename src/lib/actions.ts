@@ -1,6 +1,7 @@
 'use server';
 
 import prisma from './prisma';
+import { auth } from '@/auth';
 
 export const getAllCategories = async () => prisma.flashcardCategory.findMany({});
 
@@ -11,3 +12,10 @@ export const getFlashcards = async (slug: string) =>
     where: { slug },
     select: { flashcards: true },
   });
+
+export const getUserProfile = async () => {
+  const session = await auth();
+
+  if (!session) return null;
+  return session.user;
+};
