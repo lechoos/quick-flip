@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import type { AxiosError } from 'axios';
 import type { FormField } from '@/types/FormField';
 import { AuthForm } from '@/components/forms/AuthForm';
 import { loginSchema, LoginSchemaType } from '@/lib/formSchemas';
@@ -52,8 +53,9 @@ export const LoginForm = () => {
         router.push('/flashcards');
         router.refresh();
       }
-    } catch (ex: any) {
-      const errorMessage = ex?.response?.data?.error || 'Login failed';
+    } catch (ex) {
+      const axiosError = ex as AxiosError<{ error: string }>;
+      const errorMessage = axiosError?.response?.data?.error || 'Login failed';
       setError(errorMessage);
     } finally {
       setLoading(false);

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, RefObject, useEffect, useState } from 'react';
+import { ReactNode, RefObject, useCallback, useEffect, useState } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -19,7 +19,7 @@ type Position = {
 export const PartOfSpeech = ({ children, color = 'primary', className, targetRef, offsetY = 0, offsetX = 10 }: Props) => {
   const [position, setPosition] = useState<Position | null>(null);
 
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     if (targetRef.current) {
       const { top, right } = targetRef.current.getBoundingClientRect();
       setPosition({
@@ -27,7 +27,7 @@ export const PartOfSpeech = ({ children, color = 'primary', className, targetRef
         y: top + offsetY + window.scrollY,
       });
     }
-  };
+  }, [targetRef, offsetX, offsetY]);
 
   useEffect(() => {
     updatePosition();
@@ -37,7 +37,7 @@ export const PartOfSpeech = ({ children, color = 'primary', className, targetRef
       window.removeEventListener('resize', updatePosition);
       window.removeEventListener('scroll', updatePosition);
     };
-  }, [targetRef]);
+  }, [targetRef, updatePosition]);
 
   if (!position) return null;
 

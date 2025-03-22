@@ -1,6 +1,6 @@
 'use client';
 
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import type { FormField } from '@/types/FormField';
@@ -32,6 +32,8 @@ export const RegisterForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const redirectAddress = process.env.NODE_ENV === 'production' ? process.env.PROD_URL! + '/flashcards' : '/flashcards';
+
   const submitAction = async (data: { username: string; email: string; password: string }) => {
     try {
       setIsLoading(true);
@@ -44,15 +46,16 @@ export const RegisterForm = () => {
           email: data.email,
           password: data.password,
           redirect: true,
-          redirectTo: '/flashcards',
+          redirectTo: redirectAddress,
         });
 
         if (result?.error) {
           setError('Registration successful but login failed. Try to login with your credentials on the login page.');
         }
       }
-    } catch (ex: any) {
-      const errorMessage = ex?.response?.data?.error || 'Registration failed';
+    } catch (ex) {
+      const axiosError = ex as AxiosError<{ error: string }>;
+      const errorMessage = axiosError?.response?.data?.error || 'Registration failed';
       setError(errorMessage);
     } finally {
       setIsLoading(false);

@@ -91,7 +91,7 @@ export const TestMode = ({ currentSlide, updateSlideClass, slideNext, setScore }
     if (slides) {
       setCurrentSlideElement(slides[currentSlide]);
     }
-  }, [currentSlide]);
+  }, [currentSlide, slides]);
 
   return (
     <>

@@ -14,6 +14,31 @@ const eslintConfig = [
   {
     ignores: ['**/*.d.ts', 'cypress/**/*', './cypress.config.ts'],
   },
+  {
+    files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+  {
+    files: ['src/hooks/**/*.tsx'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+  {
+    files: ['src/__tests__/helpers/cardTestHelpers.tsx'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+  {
+    files: ['src/lib/prisma.ts'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+      'no-var': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;

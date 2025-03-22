@@ -24,7 +24,7 @@ export const Subtitle = async () => {
         >
           Login
         </Link>{' '}
-        but now it doesn't provide any features yet.
+        but now it doesn&apos;t provide any features yet.
       </h2>
     );
   }

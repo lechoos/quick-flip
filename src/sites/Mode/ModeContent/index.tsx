@@ -5,7 +5,7 @@ import { ContextProvider } from '@/providers/ContextProvider';
 import { SlidesContext } from '@/context/SlidesContext';
 import { ModeContext } from '@/context/ModeContext';
 import { Carousel } from '@/components/ui/Carousel';
-import { FinishScreen } from '@/pages/Mode/ModeContent/FinishScreen';
+import { FinishScreen } from '@/sites/Mode/ModeContent/FinishScreen';
 
 type Props = {
   slides: JSX.Element[];

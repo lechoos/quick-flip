@@ -1,7 +1,7 @@
 import { Header } from './sections/header';
 import { Link } from '@/components/atoms/link';
 import { Section } from './sections/section';
-import { Footer } from '@/pages/home/sections/footer';
+import { Footer } from '@/sites/home/sections/footer';
 
 export const Home = () => {
   return (
@@ -12,8 +12,8 @@ export const Home = () => {
         title="About the project"
       >
         <p>QuickFlip is a modern language learning application designed to make vocabulary acquisition more efficient and engaging. The core concept revolves around customizable flashcard sets that adapt to your learning pace.</p>
-        <p>The platform will ultimately feature multiple learning modes including classic flashcard review, reverse card testing, and writing practice. I'll implement spaced repetition technology to optimize memory retention and personalize the learning experience. Users will be able to track their progress over time and share their curated flashcard sets with the community.</p>
-        <p>I've adopted a strategic phased development approach, starting with robust authentication and core flashcard functionality before expanding to include social features and more advanced learning tools in later stages.</p>
+        <p>The platform will ultimately feature multiple learning modes including classic flashcard review, reverse card testing, and writing practice. I&apos;ll implement spaced repetition technology to optimize memory retention and personalize the learning experience. Users will be able to track their progress over time and share their curated flashcard sets with the community.</p>
+        <p>I&apos;ve adopted a strategic phased development approach, starting with robust authentication and core flashcard functionality before expanding to include social features and more advanced learning tools in later stages.</p>
       </Section>
       <Section
         title="Implemented Features"
@@ -53,7 +53,7 @@ export const Home = () => {
           to experience the core flashcard functionality. No registration required - jump straight into learning with our pre-loaded content.
         </p>
 
-        <p>You still can register, but it doesn't provide any additional actions.</p>
+        <p>You still can register, but it doesn&apos;t provide any additional actions, excepting showing your username on flashcards page.</p>
       </Section>
       <Footer />
     </>

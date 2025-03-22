@@ -11,7 +11,7 @@ import { hash } from 'bcryptjs';
 import { NextRequest } from 'next/server';
 
 const createRequest = (body: unknown): NextRequest => {
-  return new NextRequest('http://localhost:3000/api/auth/register', {
+  return new NextRequest(process.env.DEV_URL! + '/api/auth/register', {
     method: 'POST',
     body: JSON.stringify(body),
   });

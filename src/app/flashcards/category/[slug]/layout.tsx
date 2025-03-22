@@ -15,7 +15,7 @@ export default async function CategoryLayout({ children, params }: Props) {
   if (!category) {
     return (
       <>
-        <h1 className="mt-8 sm:mt-16 text-center underline">The category {slug} doesn't exist</h1>
+        <h1 className="mt-8 sm:mt-16 text-center underline">The category {slug} doesn&apos;t exist</h1>
         <Link
           className="block mt-2 text-lg text-center"
           href="/flashcards"

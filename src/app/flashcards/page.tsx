@@ -1,9 +1,15 @@
 import { getAllCategories } from '@/lib/actions';
 import { CategoryLabel } from '@/components/ui/CategoryLabel';
 import { AlbumIcon } from 'lucide-react';
-import { Subtitle } from '@/pages/flashcards/Subtitle';
+import { Subtitle } from '@/sites/flashcards/Subtitle';
 
 export const dynamic = 'force-dynamic';
+
+type CategoryType = {
+  name: string;
+  id: string;
+  slug: string;
+};
 
 export default async function FlashcardsPage() {
   const categories = await getAllCategories();
@@ -23,15 +29,19 @@ export default async function FlashcardsPage() {
       </header>
       <Subtitle />
       <div className="flex flex-wrap justify-center gap-x-2 gap-y-4 mt-2 mx-2">
-        {categories.map((category) => (
-          <CategoryLabel
-            key={category.id}
-            href={`/flashcards/category/${category.slug}`}
-            Icon={AlbumIcon}
-          >
-            {category.name}
-          </CategoryLabel>
-        ))}
+        {categories ? (
+          categories.map((category: CategoryType) => (
+            <CategoryLabel
+              key={category.id}
+              href={`/flashcards/category/${category.slug}`}
+              Icon={AlbumIcon}
+            >
+              {category.name}
+            </CategoryLabel>
+          ))
+        ) : (
+          <h2>There are no categories.</h2>
+        )}
       </div>
     </>
   );

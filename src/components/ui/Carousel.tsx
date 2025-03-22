@@ -3,8 +3,8 @@ import { use } from 'react';
 import { SlidesContext } from '@/context/SlidesContext';
 import { ModeContext } from '@/context/ModeContext';
 import useEmblaCarousel from 'embla-carousel-react';
-import { PracticeMode } from '@/pages/Mode/ModeContent/PracticeMode';
-import { TestMode } from '@/pages/Mode/ModeContent/TestMode';
+import { PracticeMode } from '@/sites/Mode/ModeContent/PracticeMode';
+import { TestMode } from '@/sites/Mode/ModeContent/TestMode';
 import { Link } from '@/components/atoms/link';
 
 type Props = {

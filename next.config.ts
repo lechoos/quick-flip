@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   experimental: {
     typedRoutes: true,
   },
-  output: 'standalone',
+  transpilePackages: ['next-auth'],
 };
 
 export default nextConfig;

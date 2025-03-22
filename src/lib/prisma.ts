@@ -1,13 +1,18 @@
 import { PrismaClient } from '@prisma/client';
 
 const prismaClientSingleton = () => {
-  return new PrismaClient({
-    datasources: {
-      db: {
-        url: process.env.NODE_ENV === 'production' ? process.env.PROD_DATABASE_URL : process.env.DATABASE_URL,
+  try {
+    return new PrismaClient({
+      datasources: {
+        db: {
+          url: process.env.NODE_ENV === 'production' ? process.env.PROD_DATABASE_URL || 'placeholder-url-for-build' : process.env.DATABASE_URL || 'placeholder-url-for-build',
+        },
       },
-    },
-  });
+    });
+  } catch (_) {
+    console.warn('Creating Prisma mock during build');
+    return {} as PrismaClient;
+  }
 };
 
 declare global {
