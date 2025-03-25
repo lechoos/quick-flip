@@ -2,6 +2,10 @@
   animation: fadeOut 0.7s forwards ease-in;
 }
 
+.rotate-animation {
+  animation: rotate 0.7s forwards ease-in;
+}
+
 @keyframes fadeOut {
   90% {
     opacity: 0;
@@ -9,5 +13,11 @@
   100% {
     opacity: 0;
     display: none;
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
   }
 }

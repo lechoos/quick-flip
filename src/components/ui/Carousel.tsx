@@ -87,9 +87,12 @@ export const Carousel = ({ setIsFinished, setScore }: Props) => {
       >
         <div className="embla-container">{slidesWithClasses}</div>
       </div>
-      <div className="mt-4 space-x-2">
+      <div className="mt-4">
         {mode === 'practice' ? (
-          <PracticeMode slideNext={slideNext} />
+          <PracticeMode
+            text={slidesWithClasses[currentSlide].props.front}
+            slideNext={slideNext}
+          />
         ) : (
           <TestMode
             currentSlide={currentSlide}
