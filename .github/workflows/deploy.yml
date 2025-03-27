@@ -30,6 +30,25 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npm test
 
+      - name: Start development server
+        run: |
+          npm run dev &
+          echo "Waiting for server to be ready..."
+          npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Preload pages
+        run: |
+          PAGES=(
+            "http://localhost:3000"
+            "http://localhost:3000/auth/login"
+            "http://localhost:3000/auth/register"
+          )
+      
+          for page in "${PAGES[@]}"; do
+            echo "Preloading $page"
+            curl -I --fail --retry 5 --retry-delay 2 "$page"
+          done
+
       - name: Cypress tests
         uses: cypress-io/github-action@v6
         env:
