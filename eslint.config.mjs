@@ -27,7 +27,7 @@ const eslintConfig = [
     },
   },
   {
-    files: ['src/__tests__/helpers/cardTestHelpers.tsx'],
+    files: ['src/__tests__/helpers/cardTestHelpers.test.tsx'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
     },

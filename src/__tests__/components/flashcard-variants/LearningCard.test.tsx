@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LearningCard } from '@/components/flashcards-variants/LearningCard';
 import type { Flashcard } from '@/types/Flashcard';
-import { renderCard, commonTests } from '@/__tests__/helpers/cardTestHelpers';
+import { renderCard, commonTests } from '@/__tests__/helpers/cardTestHelpers.test';
 
 type TestProps = Pick<Flashcard, 'partOfSpeech' | 'variant'> & { isLearning?: boolean };
 

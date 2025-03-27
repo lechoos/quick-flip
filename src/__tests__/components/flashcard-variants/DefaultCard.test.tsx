@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DefaultCard } from '@/components/flashcards-variants/DefaultCard';
 import type { Flashcard } from '@/types/Flashcard';
-import { renderCard, commonTests } from '@/__tests__/helpers/cardTestHelpers';
+import { renderCard, commonTests } from '@/__tests__/helpers/cardTestHelpers.test';
 
 type Props = Pick<Flashcard, 'partOfSpeech' | 'variant'> & { example?: string };
 
