@@ -1,0 +1,77 @@
+name: Quickflip
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+
+      - name: Build application
+        run: npm run build
+
+  deploy:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t quickflip .
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push to Docker Hub
+        run: |
+          docker tag quickflip ${{ secrets.DOCKERHUB_USERNAME }}/quickflip:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/quickflip:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            docker stop quickflip || true
+            docker rm quickflip || true
+            
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/quickflip:latest
+            
+            docker run -d \
+              --name quickflip \
+              -p 80:3000 \
+              --env-file ./.env \
+              ${{ secrets.DOCKERHUB_USERNAME }}/quickflip:latest
