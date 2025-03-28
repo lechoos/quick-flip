@@ -16,7 +16,7 @@ describe('Register flow', () => {
     cy.get('input[id="password"]').type(testUser.password);
     cy.get('button[type="submit"]').click();
 
-    cy.url().should('eq', Cypress.config().baseUrl + '/');
+    cy.url().should('eq', Cypress.config().baseUrl + '/flashcards');
   });
 
   it('should show error when registering with existing email', () => {
