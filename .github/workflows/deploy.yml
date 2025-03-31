@@ -61,6 +61,7 @@ jobs:
           script: |
             docker stop quickflip || true
             docker rm quickflip || true
+            docker rmi lechoos/quickflip:latest
             
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/quickflip:latest
             
