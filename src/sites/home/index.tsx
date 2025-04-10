@@ -24,6 +24,7 @@ export const Home = () => {
         <li>Core flashcard interface with basic card viewing and testing functionality</li>
         <li>Custom UI components built with a neobrutalist design approach</li>
         <li>Responsive layout for all device sizes</li>
+        <li>ElevenLabs AI integration for pronouncing phrases from flashcards</li>
       </Section>
       <Section
         title="Planned Development"
