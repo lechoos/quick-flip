@@ -8,11 +8,13 @@ const anonymousPro = Anonymous_Pro({
   variable: '--font-anonymous-pro',
   subsets: ['latin-ext'],
   weight: ['400', '700'],
+  preload: true,
 });
 
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
+  preload: true,
 });
 
 export const metadata: Metadata = {
