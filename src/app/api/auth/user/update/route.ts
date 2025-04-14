@@ -57,6 +57,13 @@ export async function PATCH(req: NextRequest) {
     );
   } catch (ex) {
     console.error('[UPDATE_USER_ERROR]', (ex as Error).message);
+
+    if ((ex as Error).message.includes('Unique constraint failed on the fields: (`email`)')) {
+      return NextResponse.json({ error: 'Email already in use' }, { status: 409 });
+    } else if ((ex as Error).message.includes('Unique constraint failed on the fields: (`username`)')) {
+      return NextResponse.json({ error: 'Username is already taken' }, { status: 409 });
+    }
+
     return NextResponse.json({ error: 'An unknown error occurred. Please try again later.' }, { status: 500 });
   }
 }
