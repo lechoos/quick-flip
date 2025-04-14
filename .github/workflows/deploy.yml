@@ -1,12 +1,15 @@
 name: Quickflip
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - master
 
 jobs:
   test-and-build:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
