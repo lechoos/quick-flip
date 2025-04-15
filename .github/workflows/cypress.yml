@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           build: npm run build
           start: npm start
@@ -33,17 +33,3 @@ jobs:
           command: npx cypress run
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-      - name: Upload videos
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress-videos
