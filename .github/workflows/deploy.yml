@@ -70,6 +70,6 @@ jobs:
             
             docker run -d \
               --name quickflip \
-              -p 443:3000 \
+              -p 3000:3000 \
               --env-file ./.env \
               ${{ secrets.DOCKERHUB_USERNAME }}/quickflip:latest
