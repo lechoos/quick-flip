@@ -78,7 +78,7 @@ describe('Register API', () => {
 
     expect(response.status).toBe(400);
     expect(data.error).toBe('Invalid input');
-    expect(data.details[0].message).toBe('Password must be at least 8 characters');
+    expect(data.details[0].message).toBe('Password must' + ' be at least 8 characters');
   });
   it('Returns an error if username is too short', async () => {
     const testUser = {
