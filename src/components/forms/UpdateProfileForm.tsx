@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import type { FormField } from '@/types/FormField';
 import { updateProfileSchema, type UpdateProfileSchemaType } from '@/lib/formSchemas';
 import { AuthForm } from '@/components/forms/AuthForm';
-import { Alert } from '@/components/ui/Alert';
 
 const updateProfileFields: FormField<UpdateProfileSchemaType>[] = [
   {
