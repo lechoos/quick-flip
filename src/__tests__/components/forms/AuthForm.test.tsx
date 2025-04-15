@@ -6,8 +6,8 @@ import type { FormField } from '@/types/FormField';
 
 describe('AuthForm', () => {
   const mockSchema = z.object({
-    username: z.string().min(3, 'Username has to be at least 3 characters long'),
-    password: z.string().min(6, 'Password has to be at least 6 characters long'),
+    username: z.string({ required_error: 'Username has to be at least 3 characters long' }).min(3, 'Username has to be at least 3 characters long'),
+    password: z.string({ required_error: 'Password has to be at least 6 characters long' }).min(6, 'Password has to be at least 6 characters long'),
   });
 
   const mockFields: FormField<typeof mockSchema>[] = [
