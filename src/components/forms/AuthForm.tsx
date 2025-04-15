@@ -65,7 +65,9 @@ export const AuthForm = <T extends z.ZodType>({ fields, validationSchema, onSubm
           </Label>
           <div className="flex">
             <Input
-              {...register(field.name as Path<z.infer<T>>)}
+              {...register(field.name as Path<z.infer<T>>, {
+                setValueAs: (val) => (val === '' ? undefined : val),
+              })}
               type={field.type === 'password' && showPasswords[field.name as string] ? 'text' : field.type}
               id={field.name as string}
               aria-invalid={errors[field.name] ? 'true' : 'false'}

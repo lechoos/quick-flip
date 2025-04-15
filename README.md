@@ -6,7 +6,6 @@ The project helps learning - providing user with sets of flashcards.
 
 ![Static Badge](https://img.shields.io/badge/Next.js-%23000000?style=for-the-badge&logo=nextdotjs&labelColor=black) ![Static Badge](https://img.shields.io/badge/TypeScript-%233178C6?style=for-the-badge&logo=typescript&labelColor=black) ![Static Badge](https://img.shields.io/badge/Prisma-%232D3748?style=for-the-badge&logo=prisma&labelColor=black) ![Static Badge](https://img.shields.io/badge/Tailwind%20CSS-%2306B6D4?style=for-the-badge&logo=tailwindcss&labelColor=black) ![Static Badge](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990?style=for-the-badge&logo=reacthookform&labelColor=black) ![Static Badge](https://img.shields.io/badge/shadcn/ui-%23000000?style=for-the-badge&logo=shadcnui&labelColor=black) ![Static Badge](https://img.shields.io/badge/Cypress-%2369D3A7?style=for-the-badge&logo=cypress&labelColor=black) ![Static Badge](https://img.shields.io/badge/Jest-%23C21325?style=for-the-badge&logo=jest&labelColor=black) ![Static Badge](https://img.shields.io/badge/ElevenLabs-%23000000?style=for-the-badge&logo=elevenlabs&labelColor=black) ![Static Badge](https://img.shields.io/badge/PostgreSQL-%234169E1?style=for-the-badge&logo=postgresql&labelColor=black)
 
-#4169E1
 ## You can use the app at https://quickflip-app.pl
 
 ## Contributions

@@ -18,3 +18,24 @@ export const registerSchema = z.object({
 });
 
 export type RegisterSchemaType = typeof registerSchema;
+
+export const updateProfileSchema = z.object({
+  email: z.string().email('Invalid email format').optional(),
+  password: z
+    .preprocess(
+      (val) => {
+        if (typeof val !== 'string' || val.trim() === '') return undefined;
+        return val;
+      },
+      z.string().min(8, 'Password must be at least 8 characters long').regex(/[A-Z]/, 'Password must contain at least one uppercase letter').regex(/[0-9]/, 'Password must contain at least one number'),
+    )
+    .optional(),
+  username: z
+    .string()
+    .min(3, 'Username must be at least 3 characters long')
+    .max(30, 'Username must not exceed 30 characters')
+    .regex(/^[a-zA-Z0-9_-]+$/, 'Username can only' + ' contain letters, numbers, underscores and dashes')
+    .optional(),
+});
+
+export type UpdateProfileSchemaType = typeof updateProfileSchema;

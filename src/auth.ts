@@ -13,6 +13,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.id = user.id;
         token.email = user.email;
         token.username = user.username;
+      } else if (token?.id) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+        });
+
+        if (dbUser) {
+          token.email = dbUser.email;
+          token.username = dbUser.username;
+        }
       }
       return token;
     },
