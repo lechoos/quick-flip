@@ -1,6 +1,4 @@
-'use client';
-
-import { useState, useTransition } from 'react';
+import { Dispatch, SetStateAction, useState, useTransition } from 'react';
 import axios, { type AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import type { FormField } from '@/types/FormField';
@@ -29,11 +27,15 @@ const updateProfileFields: FormField<UpdateProfileSchemaType>[] = [
   },
 ];
 
-export const UpdateProfileForm = () => {
+type Props = {
+  setShowForm: Dispatch<SetStateAction<boolean>>;
+  setIsUpdated: Dispatch<SetStateAction<boolean>>;
+};
+
+export const UpdateProfileForm = ({ setShowForm, setIsUpdated }: Props) => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isUpdated, setIsUpdated] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const submitAction = async (data: { username?: string; email?: string; password?: string }) => {
@@ -48,6 +50,7 @@ export const UpdateProfileForm = () => {
         startTransition(() => {
           router.refresh();
           setIsUpdated(true);
+          setShowForm(false);
         });
       }
     } catch (ex) {
@@ -60,22 +63,13 @@ export const UpdateProfileForm = () => {
   };
 
   return (
-    <>
-      {isUpdated && (
-        <Alert
-          message="Profile updated successfully"
-          variant="success"
-          duration={5000}
-        />
-      )}
-      <AuthForm
-        fields={updateProfileFields}
-        onSubmitAction={submitAction}
-        submitText="Update Profile"
-        validationSchema={updateProfileSchema}
-        serverError={error!}
-        isLoading={loading || isPending}
-      />
-    </>
+    <AuthForm
+      fields={updateProfileFields}
+      onSubmitAction={submitAction}
+      submitText="Update Profile"
+      validationSchema={updateProfileSchema}
+      serverError={error!}
+      isLoading={loading || isPending}
+    />
   );
 };
