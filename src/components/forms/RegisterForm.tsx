@@ -2,6 +2,7 @@
 
 import axios, { type AxiosError } from 'axios';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import type { FormField } from '@/types/FormField';
 import { AuthForm } from '@/components/forms/AuthForm';
@@ -31,8 +32,7 @@ const registerFields: FormField<RegisterSchemaType>[] = [
 export const RegisterForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const redirectAddress = process.env.NODE_ENV === 'production' ? process.env.PROD_URL! + '/flashcards' : '/flashcards';
+  const router = useRouter();
 
   const submitAction = async (data: { username: string; email: string; password: string }) => {
     try {
@@ -45,12 +45,23 @@ export const RegisterForm = () => {
         const result = await signIn('credentials', {
           email: data.email,
           password: data.password,
-          redirect: true,
-          redirectTo: redirectAddress,
+          redirect: false,
         });
 
         if (result?.error) {
-          setError('Registration successful but login failed. Try to login with your credentials on the login page.');
+          switch (result.error) {
+            case 'CredentialsSignin':
+              setError('Invalid credentials');
+              break;
+            case 'AccessDenied':
+              setError('Access denied');
+              break;
+            default:
+              setError('Registration successful but login failed. Try to login with your credentials on the login page.');
+          }
+        } else if (result?.ok) {
+          router.push('/flashcards');
+          router.refresh();
         }
       }
     } catch (ex) {
