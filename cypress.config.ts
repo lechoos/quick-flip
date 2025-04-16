@@ -17,7 +17,7 @@ export default defineConfig({
     defaultCommandTimeout: 10000,
     requestTimeout: 10000,
     responseTimeout: 10000,
-    video: false,
+    video: true,
     screenshotOnRunFailure: true,
     chromeWebSecurity: false,
     env: {
@@ -63,7 +63,7 @@ export default defineConfig({
     },
     viewportWidth: 1280,
     viewportHeight: 720,
-    video: false,
+    video: true,
   },
   retries: {
     runMode: 2,
