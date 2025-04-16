@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - develop
-    workflow_dispatch:
-
+    
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -36,3 +35,13 @@ jobs:
           AUTH_TRUST_HOST: ${{ secrets.AUTH_TRUST_HOST }}
           NEXTAUTH_SECRET: ${{ secrets.NEXT_AUTH_SECRET }}
           PROD_DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+          
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
+          retention-days: 1
