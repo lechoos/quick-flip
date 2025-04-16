@@ -8,7 +8,7 @@ describe('Register flow', () => {
     const testUser = {
       email: `testuser+${Date.now()}@example.com`,
       password: 'Password123!',
-      username: `newuser+${Date.now()}`,
+      username: `newuser_${Date.now()}`,
     };
 
     cy.get('input[id="username"]').type(testUser.username);
