@@ -77,8 +77,7 @@ describe('RegisterForm', () => {
       expect(mockedSignIn).toHaveBeenCalledWith('credentials', {
         email: 'test@example.com',
         password: 'Password123',
-        redirect: true,
-        redirectTo: '/flashcards',
+        redirect: false,
       });
     });
   });
