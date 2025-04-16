@@ -13,6 +13,13 @@ jest.mock('next-auth/react', () => ({
   signIn: jest.fn(),
 }));
 
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    refresh: jest.fn(),
+  }),
+}));
+
 const mockedSignIn = signIn as jest.Mock;
 
 beforeEach(() => {
