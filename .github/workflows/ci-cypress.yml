@@ -1,9 +1,13 @@
-name: E2E Tests
+name: CI E2E Tests
 
 on:
-  push:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
     branches:
-      - develop
+      - master
     
 jobs:
   cypress-run:
