@@ -50,7 +50,7 @@ describe('Login flow', () => {
   it('should show error when trying to login with non-existent user', () => {
     cy.task('resetDatabase');
 
-    cy.get('input[id="email"]').type(Cypress.env('TEST_USER_EMAIL'));
+    cy.get('input[id="email"]').type(`testuser+${Date.now()}@example.com`);
     cy.get('input[id="password"]').type(Cypress.env('TEST_USER_PASSWORD'));
     cy.get('button[type="submit"]').click();
 
