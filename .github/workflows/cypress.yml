@@ -36,6 +36,7 @@ jobs:
           NEXTAUTH_SECRET: ${{ secrets.NEXT_AUTH_SECRET }}
           PROD_DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
           NEXTAUTH_URL: 'http://localhost:3000'
+          PROD_URL: 'http://localhost:3000'
           
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
