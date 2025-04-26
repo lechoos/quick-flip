@@ -44,17 +44,14 @@ export const Home = () => {
         border
       >
         <p>
-          Try interactive{' '}
+          You can already learn and test your skills. Try it out now! <br />
           <Link
             className="underline"
             href={'/demo'}
           >
-            Demo
-          </Link>{' '}
-          to experience the core flashcard functionality. No registration required - jump straight into learning with our pre-loaded content.
+            Learn and test!
+          </Link>
         </p>
-
-        <p>You still can register, but it doesn&apos;t provide any additional actions, excepting showing your username on flashcards page.</p>
       </Section>
       <Footer />
     </>
