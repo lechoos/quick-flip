@@ -20,6 +20,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Quick Flip',
   description: 'Your best app to learn and practice Spanish. | La mejor aplicación para aprender y practicar español.',
+  icons: {
+    icon: '/icons/favicon.ico',
+    apple: '/icons/apple-icon.png',
+    other: [
+      { url: '/icons/icon0.svg', type: 'image/svg+xml' },
+      { url: '/icons/icon1.png', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
