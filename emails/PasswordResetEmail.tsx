@@ -1,5 +1,4 @@
 import { Body, Container, Head, Heading, Html, Link, Preview, Section, Text, Font } from '@react-email/components';
-import { createOTP } from '@/lib/auth/createOTP';
 
 const footerText = {
   fontSize: '12px',
@@ -75,12 +74,7 @@ interface Props {
 }
 const year = new Date().getFullYear();
 
-const otpCode = (async () => {
-  const { otp } = await createOTP();
-  return otp;
-})();
-
-export const ResetPasswordEmail = ({ validationCode }: Props) => (
+const ResetPasswordEmail = ({ validationCode }: Props) => (
   <Html>
     <Head>
       <Font
@@ -125,7 +119,7 @@ export const ResetPasswordEmail = ({ validationCode }: Props) => (
 );
 
 ResetPasswordEmail.PreviewProps = {
-  validationCode: otpCode as unknown as string,
+  validationCode: '123456',
 } as Props;
 
 export default ResetPasswordEmail;
