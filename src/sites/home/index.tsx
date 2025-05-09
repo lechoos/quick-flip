@@ -47,9 +47,9 @@ export const Home = () => {
           You can already learn and test your skills. Try it out now! <br />
           <Link
             className="underline"
-            href={'/demo'}
+            href="/flashcards"
           >
-            Learn and test!
+            Learn and test yourself!
           </Link>
         </p>
       </Section>

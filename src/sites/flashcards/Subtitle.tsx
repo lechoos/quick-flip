@@ -10,21 +10,20 @@ export const Subtitle = async () => {
   if (!user) {
     return (
       <h2 className={commonStyles}>
-        You can also{' '}
+        You are not logged in! You can{' '}
         <Link
           className="underline"
           href={'/auth/register'}
         >
           Register
         </Link>{' '}
-        and{' '}
+        or{' '}
         <Link
           className="underline"
           href={'/auth/login'}
         >
           Login
-        </Link>{' '}
-        but now it doesn&apos;t provide any features yet.
+        </Link>
       </h2>
     );
   }
