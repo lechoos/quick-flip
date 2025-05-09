@@ -1,4 +1,5 @@
 # QuickFlip
+## [Git workflow guide](./docs/git-workflow.md)
 
 QuickFlip is a project designed to support language learning by providing users with sets of flashcards.
 
@@ -23,6 +24,7 @@ Currently, work is ongoing to enable partial offline functionality.
  - Integrating AI assistance to generate flashcards based on user needs
  - Adding more learning modes
 
+---
 ## Tech stack
 
 ![Static Badge](https://img.shields.io/badge/Next.js-%23000000?style=for-the-badge&logo=nextdotjs&labelColor=black) ![Static Badge](https://img.shields.io/badge/TypeScript-%233178C6?style=for-the-badge&logo=typescript&labelColor=black) ![Static Badge](https://img.shields.io/badge/Prisma-%232D3748?style=for-the-badge&logo=prisma&labelColor=black) ![Static Badge](https://img.shields.io/badge/Tailwind%20CSS-%2306B6D4?style=for-the-badge&logo=tailwindcss&labelColor=black) ![Static Badge](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990?style=for-the-badge&logo=reacthookform&labelColor=black) ![Static Badge](https://img.shields.io/badge/shadcn/ui-%23000000?style=for-the-badge&logo=shadcnui&labelColor=black) ![Static Badge](https://img.shields.io/badge/Cypress-%2369D3A7?style=for-the-badge&logo=cypress&labelColor=black) ![Static Badge](https://img.shields.io/badge/Jest-%23C21325?style=for-the-badge&logo=jest&labelColor=black) ![Static Badge](https://img.shields.io/badge/React%20Testing%20Library-%23E33332?style=for-the-badge&logo=testinglibrary&labelColor=black) ![Static Badge](https://img.shields.io/badge/ElevenLabs-%23000000?style=for-the-badge&logo=elevenlabs&labelColor=black) ![Static Badge](https://img.shields.io/badge/PostgreSQL-%234169E1?style=for-the-badge&logo=postgresql&labelColor=black) ![Static Badge](https://img.shields.io/badge/Docker-%232496ED?style=for-the-badge&logo=docker&labelColor=black) ![Static Badge](https://img.shields.io/badge/Nginx-%23009639?style=for-the-badge&logo=nginx&labelColor=black) ![Static Badge](https://img.shields.io/badge/GitHub%20Actions-%232088FF?style=for-the-badge&logo=githubactions&labelColor=black)
@@ -34,24 +36,30 @@ When a pull request is created to merge into the master branch, the code is auto
 After merging, the CD pipeline builds a Docker image, pushes it to Docker Hub, and then pulls it on an EC2 instance, where a container is created from the pulled image.\
 On the server, Nginx handles incoming requests and redirects them to the running Docker container via a reverse proxy.
 
+
 ## You can use the app at https://quickflip-app.pl
 
+---
 ## Contributions
 
 Contributions to the project are not accepted.
 
+---
 ## Author
 
 Piotr Lechowicz, Lotusite
 
+---
 ## License
 
 The project has no official licence. The author retains copyright to the project and does not consent to its reproduction or commercial use by third parties.
 
+---
 ## Status
 
 The project is still under development but there is a stable production version, which can be used.
 
+---
 ## Contact
 
 Possible contact via email: kontakt@lotusite.pl
